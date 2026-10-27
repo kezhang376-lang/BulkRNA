@@ -1,2 +1,0 @@
-﻿contrast_id,treatment,control
-10GY5FFRT_vs_Control,10GY5FFRT,Control

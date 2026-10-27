@@ -1,0 +1,69 @@
+{
+  "pipeline_version": "1.0.0",
+  "git_ref": "refs/tags/v1.0.0",
+  "release_date": "2026-10-27",
+  "timezone": "Asia/Shanghai",
+  "config_schema_version": "1.0-review",
+  "validation_basis": "User confirmed successful validation of the current project; this baseline operation does not independently re-audit final R outputs.",
+  "project_run_id": "v1_test6_20261027_retry01",
+  "retained_bundles": {
+    "v1_test6_20261027_release": {
+      "path": "projects/20261018_xiehe_zhou/releases/v1_test6_20261027_release.tar.gz",
+      "archive_sha256": "f1e763ca0b505edab72835f38bd2b9c1b2c0abb51e85a5f7880984b57555d90b"
+    },
+    "v1_test6_20261027_retry01": {
+      "path": "projects/20261018_xiehe_zhou/releases/v1_test6_20261027_retry01.tar.gz",
+      "archive_sha256": "4103ab2e605749370db077698092212dc9e38c0d2d3d36418d21bcc047a4333c"
+    }
+  },
+  "source_sha256": {
+    ".gitattributes": "5878c72540796c20ceb3627b369b9b860f310b02fcb43068ec06afe0afc85ddf",
+    "AGENTS.md": "fa8930eae404407d90df7fcd3ac6c233aec4639a52b395af9f689a1da9156169",
+    "config/defaults.yaml": "88487c710355ec8f861d72c542b5a3dfef9cf45d3b5cd30fcb0238c4d50ab8f0",
+    "config/review.example.yaml": "9f8bc1355556368fd94d10f38b2e038d5080b4535b747d0564b33c3f43b7e8dc",
+    "schemas/config.schema.json": "641664614e5d4e9ea7972464c18243e6be0c68f67eaa08baebb70d55489be47b",
+    "scripts/R/common.R": "1d8e20fed95af30761e583af3786e38b889ba82f468e74a6a92b6cd7d89c044f",
+    "scripts/R/custom_plots.R": "6c63d8f9aa3b661d161ba15c5bebf00e939998467fdc6083ecefaed4059e0593",
+    "scripts/R/differential_expression.R": "266df7657b7eab091a795442c1ae03231c2ede4bf01940256cb00464a4072b60",
+    "scripts/R/enrichment.R": "a4a579b3608d82b9a287cd0468cc12a8cdf6889b3fab5864bb516c9ac0944ac7",
+    "scripts/R/qc.R": "db12dbc6641ee116dd168b85433d0dfd4f6d7f18447ef726f4ecd823a53c3319",
+    "scripts/R/run_analysis.R": "9ae104695dfcbd5dac62958e21a6eae409e19dc324109e97f067a5edeec27170",
+    "scripts/R/summary_report.R": "5a471a6aec5e2369d08d636628aff6dd8a3f4eaade58e83b702f5f621295c4ec",
+    "scripts/shell/launch_stage.py": "bd03261c4d339ee5e670011e02b9d99833b1822a67f32071208b22fdafc55150",
+    "scripts/shell/run_shell.sh": "8651d88517672926968ab2c8a4be00cab2808fa8be1f216ddc365a668fdf051a",
+    "scripts/shell/shell_stage.py": "1b5a8d8798fafb94e616802c91d1d0fb0d239f98c559656ac6973704754d45b8",
+    "scripts/shell/start_stage.py": "d5083f3b9866017a828d256554d8d86427af304c0e8f1ed7c6a4f3897d1bdc76",
+    "step1_shell.sh": "008404e0798d0579e27f21e3acd7e17f249356b72a1ad95002474e47c0287e0c",
+    "step2_Rscript.R": "eb31adf42f465e270f45d2a1b5575313aba026bb0e97d8c4fd85f8594e0120cb",
+    "tests/test_enrichment.R": "fdb9ff3dcae16f01d4e2efe7f3354b821a2d97b74592e841ca4e558dea147e52",
+    "tests/test_pod_enrichment.R": "27caf227fbee81e0190c75270c73042d5fad590c0e098a0a3e19eb2e84690df3",
+    "tests/test_portable_bundle.py": "3ea15ef6c8c81ead32b3c41a75497325bd321d6a4eecc9a728628acac6dd0742",
+    "tests/test_R.R": "66543e181f698968b94fbd55d02fbff70a4cdeb1383a50e75e53a8f76b291451",
+    "tests/test_shell_stage.py": "27eea800a7576617b19d50267be1d262932adcce20cc53e5e36331b4f3c66d76",
+    "VERSION": "59854984853104df5c353e2f681a15fc7924742f9a2e468c29af248dce45ce03",
+    "workflow/modules/validation/smoke_enrichment.R": "27caf227fbee81e0190c75270c73042d5fad590c0e098a0a3e19eb2e84690df3",
+    "workflow/modules/validation/smoke_R.R": "ea9294cd6f4f43a80eca2b835d055a0a8a45ed61e277b60459a6d69bd6a391d5",
+    "workflow/modules/validation/smoke_shell.py": "1184d1d147d47b8d6d27af47abc335172eb6b184905df19ecf204ece5dc80daa",
+    "workflow/orchestrator/package_bundle.py": "2373fd429019fc8b76cc6ab8cc3a92ebcae57e2511dd12ba4f682e9f2576aafc",
+    "workflow/orchestrator/Prepare-BulkRNA.ps1": "5edaf2c5d16198679b9dd5589a81331023481b51854f342bab29011debc552e3",
+    "workflow/orchestrator/prepare_project.R": "5dc1798c75a074fe17a0e3f9df0c60451ee07a6a042c2eba47fe483ec1c87c58",
+    "workflow/orchestrator/upload_bundle.py": "b7ce138108de05d834f922b6337f4ef3b3bac5a05471eef801f3aee6bec61e77"
+  },
+  "scope": [
+    "PE fastp/STAR/samtools/featureCounts/MultiQC",
+    "sample QC",
+    "DESeq2 pairwise Wald",
+    "GO ORA/GSEA",
+    "HTML report",
+    "nonroot guards, package checksums and detached stage launches"
+  ],
+  "not_implemented": [
+    "automatic Shell-to-R cross-Pod orchestration",
+    "fingerprint-verified resume and mode C",
+    "full mode B orchestration",
+    "KEGG",
+    "LRT",
+    "WGCNA"
+  ],
+  "note": "Existing portable runtime.json files are unchanged; pipeline version linkage is external through this manifest and Git tag, not injected into old packages."
+}

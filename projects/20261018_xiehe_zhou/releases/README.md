@@ -1,17 +1,18 @@
-# 项目运行包
+# 项目冻结运行包
 
-当前唯一推荐版本：**v1_test6_20261027_release**。
+通用源码版本为Git标签v1.0.0。当前项目验证成功由用户确认，实际运行编号为v1_test6_20261027_retry01。
 
-- `v1_test6_20261027_release/`：整体可拷贝目录。
-- `v1_test6_20261027_release.tar.gz`：整体可拷贝压缩包。
-- `.tar.gz.sha256`：压缩包SHA256。
-- `v1_test6_20261027_release.validation.json`：本次Pod兼容性审计副本。
-- 包内`README_V1_CN.md`：中文运行说明。
+| 包 | 状态 | 压缩包SHA256 |
+|---|---|---|
+| v1_test6_20261027_retry01 | 当前6样本运行；Shell验收通过，R已投递，用户确认流程验证成功 | 4103ab2e605749370db077698092212dc9e38c0d2d3d36418d21bcc047a4333c |
+| v1_test6_20261027_release | 首次50GiB容器正式Shell运行失败；保留追溯，不应重复启动 | f1e763ca0b505edab72835f38bd2b9c1b2c0abb51e85a5f7880984b57555d90b |
 
-旧r1/r2/r3为构建或诊断记录，不应启动。完整6样本分析没有因生成/上传/核验运行包而自动开始。
+包目录、tar.gz和sha256文件均保持原样。包内说明是构建时快照；retry01包曾注明仅授权Shell，此后用户另行授权R，进展见项目计划及logs，不改旧快照。
 
-最终包已部署到 `/home/zhangke/RNA-seq/20261027_xiehe_zhou/workflow/v1_test6_20261027_release`，SHA256为 `f1e763ca0b505edab72835f38bd2b9c1b2c0abb51e85a5f7880984b57555d90b`。更多证据见仓库docs/07_V1运行包交付与Pod验收.md。
+旧r1/r2/r3和prepared已移出工作区，可从Git标签baseline-before-v1-cleanup恢复。删除文件及指纹见docs/v1_cleanup_inventory.json。
 
-## 最新已投递运行：v1_test6_20261027_retry01
+服务器代码：/home/zhangke/RNA-seq/20261027_xiehe_zhou/workflow/v1_test6_20261027_retry01。
 
-上文release包对应的首次正式Shell运行已失败（第二样本STAR退出137，50GiB容器内存压力），不再作为当前运行。用户更换300GiB Shell Pod后，已生成并上传v1_test6_20261027_retry01包，于2026-10-27北京时间17:51:51启动Shell，PID2174，单次核验running。新包SHA256：4103ab2e605749370db077698092212dc9e38c0d2d3d36418d21bcc047a4333c。新包只更新Shell Pod，分析参数、样本和源码保持一致；R未启动，未持续监控，结果尚未验收。旧包及失败结果继续保留作追溯；不要重新启动旧包。
+服务器结果：/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_retry01。
+
+包已有结果，不要重复启动入口。新分析请生成新run_id，不覆盖现有目录。

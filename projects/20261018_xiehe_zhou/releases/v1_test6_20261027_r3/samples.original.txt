@@ -1,7 +1,0 @@
-﻿sample_id,group,fastq_r1,fastq_r2
-10GY5FFRT-1,10GY5FFRT,10GY5FFRT-1_1.fq.gz,10GY5FFRT-1_2.fq.gz
-10GY5FFRT-2,10GY5FFRT,10GY5FFRT-2_1.fq.gz,10GY5FFRT-2_2.fq.gz
-10GY5FFRT-3,10GY5FFRT,10GY5FFRT-3_1.fq.gz,10GY5FFRT-3_2.fq.gz
-control-1,Control,control-1_1.fq.gz,control-1_2.fq.gz
-control-2,Control,control-2_1.fq.gz,control-2_2.fq.gz
-control-3,Control,control-3_1.fq.gz,control-3_2.fq.gz

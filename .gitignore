@@ -21,6 +21,7 @@ Rplots.pdf
 !/projects/*/custom/results/.gitkeep
 /projects/*/results/
 /projects/*/raw_data/
+/projects/*/prepared/
 # Local credentials and editor caches are never part of releases.
 .env
 .env.local
