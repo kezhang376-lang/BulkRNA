@@ -1,0 +1,83 @@
+# 仅供审查的 v1 配置示例；不是已经批准的科研方案。
+# 合并 config/defaults.yaml；null 是必须补齐/确认的信息，不会被猜填。
+schema_version: "1.0-review"
+project:
+  id: "20261018_xiehe_zhou"
+  description: "10GY5FFRT vs Control（实验设计待确认）"
+metadata:
+  samples: "samples.csv"
+  contrasts: "contrasts.csv"
+  delimiter: "\t"  # 当前真实文件使用 Tab
+kubernetes:
+  context: null
+  namespace: "default"
+  shell_pod: null
+  r_pod: null
+  account: null # Pod 内的非 root Linux 账号，例如 "zhangke"；不是集群认证用户名。
+species:
+  name: "mouse"
+  genome: "GRCm39"
+  annotation: "Ensembl_109"
+paths:
+  input_dir: null
+  output_dir: null
+  reference_dir: "/home/zhangke/public_database"
+  counts_file: null
+input:
+  type: "fastq"
+  paired_end: true
+  strandedness: null
+analysis:
+  fastp: true
+  star: true
+  featurecounts: true
+  sample_qc: true
+  differential_expression: true
+  go_enrichment: true  # 本版明确为 GO ORA，新增方法，须审查
+  kegg_enrichment: true # 本版未实现：保留需求并阻断，不静默关闭
+  gsea: true
+  custom_analysis: false
+  multiqc: true
+references:
+  fasta: null
+  gtf: null
+  star_index: null
+resources:
+  fastp_threads: null
+  star_threads: null
+  star_sort_threads: null
+  featurecounts_threads: null
+  # star_sort_memory_bytes: 4294967296.0 # 可选，按实际Pod内存预算设置；.0避免R YAML整数溢出。
+environment:
+  shell_path_prepend: [] # 如工具安装于Conda，可配置已核实的 /miniconda3/bin。
+  # rscript: "/usr/bin/Rscript" # 按R Pod实际安装位置填写。
+fastp:
+  extra_args: [] # 参数数组；也可填旧键值配置的绝对路径，程序使用文件内fastp字段。
+  # expected_version: "0.21.0" # 可选版本约束，项目要求固定旧版本时填写。
+featurecounts:
+  count_unit: "fragment" # 此版只支持明确的 PE fragment 计数
+  feature_type: "exon"
+  gene_attribute: "gene_id"
+filtering:
+  method: "legacy_nonzero_fraction" # 保留原代码选项，仅候选方案
+  fraction: 0.75
+deseq2:
+  design: "~ group"
+  fdr: 0.05
+  log2fc_cutoff: 1
+  fit_type: "parametric"
+enrichment:
+  orgdb: "org.Mm.eg.db"
+  key_type: "ENSEMBL"
+  ontology: "ALL"
+  fdr: 0.05
+  min_gs_size: 3 # 保留原脚本候选参数，尚待方法确认
+  max_gs_size: 800
+  gsea_rank: "log2FoldChange" # 与原脚本一致；Wald stat 是另一个需确认的选项
+  seed: 20261027
+  eps: 0.0000000001
+  show_category: 20
+execution:
+  resume: false # v1 只生成全新运行，尚无经过指纹验证的恢复机制
+  overwrite: false
+  mode: "standard"

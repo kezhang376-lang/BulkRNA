@@ -1,0 +1,72 @@
+{
+  "checked_utc": "2026-10-27T12:14:25.457702+00:00",
+  "launch": {
+    "status": "launched_not_completed",
+    "stage": "r",
+    "pid": 492,
+    "started_utc": "2026-10-27T12:14:05.290180+00:00",
+    "runtime": "/home/zhangke/RNA-seq/20261027_xiehe_zhou/workflow/v1_test6_20261027_retry01/runtime.json",
+    "log": "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_retry01/launcher/r.launcher.log"
+  },
+  "status": {
+    "status": "running",
+    "started": "2026-10-27 12:14:11 UTC"
+  },
+  "process": {
+    "pid": 492,
+    "state": "R",
+    "cmdline": "/usr/lib64/R/bin/exec/R --no-echo --no-restore --vanilla --file=/home/zhangke/RNA-seq/20261027_xiehe_zhou/workflow/v1_test6_20261027_retry01/code/R/run_analysis.R --args /home/zhangke/RNA-seq/20261027_xiehe_zhou/workflow/v1_test6_20261027_retry01/runtime.json --execute ",
+    "uid": 1482,
+    "resource_status": [
+      "VmHWM:\t 1513252 kB",
+      "VmRSS:\t 1513252 kB",
+      "Threads:\t257"
+    ]
+  },
+  "logs": {
+    "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_retry01/launcher/r.launcher.log": [
+      "",
+      ""
+    ],
+    "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_retry01/analysis/analysis.log": [
+      "  it appears that the last variable in the design formula, 'group',",
+      "  has a factor level, 'Control', which is not the reference level. we recommend",
+      "  to use factor(...,levels=...) or relevel() to set this as the reference level",
+      "  before proceeding. for more information, please see the 'Note on factor levels'",
+      "  in vignette('DESeq2').",
+      "'select()' returned 1:many mapping between keys and columns"
+    ]
+  },
+  "outputs": [
+    "status.json",
+    "analysis.log",
+    "sessionInfo_start.txt",
+    "runtime.json",
+    "filtering.csv",
+    "filtered_counts.tsv",
+    "qc/log2_cpm_plus1.tsv",
+    "qc/library_summary.csv",
+    "qc/sample_boxplot.pdf",
+    "qc/sample_violin.pdf",
+    "qc/sample_correlation.csv",
+    "qc/sample_correlation.pdf",
+    "qc/pca_scores.csv",
+    "qc/pca_variance.csv",
+    "qc/pca_logcpm.pdf",
+    "qc/sample_clustering.pdf",
+    "de/aligned_coldata.csv",
+    "de/design_matrix.csv",
+    "de/normalized_counts.tsv",
+    "de/dds.rds",
+    "de/contrast_summary.csv",
+    "de/10GY5FFRT_vs_Control/all_genes.csv",
+    "de/10GY5FFRT_vs_Control/significant_genes.csv",
+    "de/10GY5FFRT_vs_Control/result.rds",
+    "de/10GY5FFRT_vs_Control/ma.pdf",
+    "de/10GY5FFRT_vs_Control/volcano.pdf",
+    "enrichment/10GY5FFRT_vs_Control/annotation_mapping.csv",
+    "enrichment/10GY5FFRT_vs_Control/id_symbol_mapping.csv",
+    "enrichment/10GY5FFRT_vs_Control/go_gsea_ranks.csv",
+    "enrichment/10GY5FFRT_vs_Control/go_gsea_rank_diagnostics.json"
+  ]
+}

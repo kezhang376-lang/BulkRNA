@@ -1,0 +1,36 @@
+project:
+  id: BulkRNA_001
+  description: Treatment vs Control
+kubernetes:
+  namespace: default
+  shell_pod: shell-pod-name
+  r_pod: r-pod-name
+species:
+  name: mouse
+  genome: GRCm39
+  annotation: Ensembl_109
+paths:
+  input_dir: /home/zhangke/RNA-seq/project001/raw_data
+  output_dir: /home/zhangke/RNA-seq/project001/results
+  reference_dir: /home/zhangke/public_database
+input:
+  type: fastq
+  paired_end: yes
+analysis:
+  fastp: yes
+  star: yes
+  featurecounts: yes
+  sample_qc: yes
+  differential_expression: yes
+  go_enrichment: yes
+  kegg_enrichment: yes
+  gsea: yes
+  custom_analysis: no
+deseq2:
+  design: ~ group
+  fdr: 0.05
+  log2fc_cutoff: 1
+execution:
+  resume: yes
+  overwrite: no
+  mode: standard

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BulkRNA review v1 configuration (implemented subset)",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "project", "metadata", "kubernetes", "species", "paths", "input", "analysis", "deseq2", "execution", "filtering", "resources", "references", "fastp", "featurecounts"],
+  "properties": {
+    "schema_version": {"type": "string", "enum": ["1.0-review"]},
+    "project": {"type": "object", "additionalProperties": false, "required": ["id", "description"], "properties": {
+      "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"}, "description": {"type": "string"}
+    }},
+    "metadata": {"type": "object", "additionalProperties": false, "required": ["samples", "contrasts", "delimiter"], "properties": {
+      "samples": {"type": "string"}, "contrasts": {"type": "string"}, "delimiter": {"type": "string", "enum": [",", "\t"]}
+    }},
+    "kubernetes": {"type": "object", "additionalProperties": false, "required": ["context", "namespace", "shell_pod", "r_pod", "account"], "properties": {
+      "context": {"type": "string"}, "namespace": {"type": "string"}, "shell_pod": {"type": "string"}, "r_pod": {"type": "string"},
+      "shell_container": {"type": ["string", "null"]}, "r_container": {"type": ["string", "null"]},
+      "account": {"type": "string", "pattern": "^(?!root$)[a-z_][a-z0-9_-]*$"}
+    }},
+    "species": {"type": "object", "additionalProperties": false, "required": ["name", "genome", "annotation"], "properties": {
+      "name": {"type": "string", "enum": ["mouse", "human"]}, "genome": {"type": "string"}, "annotation": {"type": "string"}
+    }},
+    "paths": {"type": "object", "additionalProperties": false, "required": ["output_dir"], "properties": {
+      "input_dir": {"type": ["string", "null"]}, "output_dir": {"type": "string"}, "reference_dir": {"type": ["string", "null"]},
+      "counts_file": {"type": ["string", "null"]}
+    }},
+    "input": {"type": "object", "additionalProperties": false, "required": ["type", "paired_end", "strandedness"], "properties": {
+      "type": {"type": "string", "enum": ["fastq", "counts"]}, "paired_end": {"type": "boolean"},
+      "strandedness": {"type": ["string", "null"], "enum": ["unstranded", "forward", "reverse", null]}
+    }},
+    "analysis": {"type": "object", "additionalProperties": false,
+      "required": ["fastp", "star", "featurecounts", "sample_qc", "differential_expression", "go_enrichment", "kegg_enrichment", "gsea", "custom_analysis"],
+      "properties": {
+        "fastp": {"type": "boolean"}, "star": {"type": "boolean"}, "featurecounts": {"type": "boolean"},
+        "sample_qc": {"type": "boolean"}, "differential_expression": {"type": "boolean"}, "go_enrichment": {"type": "boolean"},
+        "kegg_enrichment": {"type": "boolean"}, "gsea": {"type": "boolean"}, "custom_analysis": {"type": "boolean"}, "multiqc": {"type": "boolean"}
+      }
+    },
+    "deseq2": {"type": "object", "additionalProperties": false, "required": ["design", "fdr", "log2fc_cutoff", "fit_type"], "properties": {
+      "design": {"type": "string", "pattern": "^~\\s*[A-Za-z][A-Za-z0-9_]*(\\s*\\+\\s*[A-Za-z][A-Za-z0-9_]*)*$"},
+      "fdr": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+      "log2fc_cutoff": {"type": "number", "minimum": 0}, "fit_type": {"type": "string", "enum": ["parametric", "local", "mean"]}
+    }},
+    "filtering": {"type": "object", "additionalProperties": false, "required": ["method"], "properties": {
+      "method": {"type": "string", "enum": ["legacy_nonzero_fraction", "min_count_samples", "none"]},
+      "fraction": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+      "min_count": {"type": "integer", "minimum": 1}, "min_samples": {"type": "integer", "minimum": 1}
+    }},
+    "resources": {"type": "object", "additionalProperties": false, "required": ["fastp_threads", "star_threads", "star_sort_threads", "featurecounts_threads"], "properties": {
+      "fastp_threads": {"type": "integer", "minimum": 1, "maximum": 16}, "star_threads": {"type": "integer", "minimum": 1},
+      "star_sort_threads": {"type": "integer", "minimum": 1}, "featurecounts_threads": {"type": "integer", "minimum": 1},
+      "star_sort_memory_bytes": {"type": "integer", "minimum": 1}
+    }},
+    "references": {"type": "object", "additionalProperties": false, "properties": {
+      "fasta": {"type": ["string", "null"]}, "gtf": {"type": ["string", "null"]}, "star_index": {"type": ["string", "null"]}
+    }},
+    "fastp": {"type": "object", "additionalProperties": false, "required": ["extra_args"], "properties": {
+      "extra_args": {"type": ["array", "string"], "items": {"type": "string"}, "pattern": "^/"},
+      "expected_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"}
+    }},
+    "featurecounts": {"type": "object", "additionalProperties": false, "required": ["count_unit", "feature_type", "gene_attribute"], "properties": {
+      "count_unit": {"type": "string", "enum": ["fragment"]}, "feature_type": {"type": "string", "enum": ["exon"]},
+      "gene_attribute": {"type": "string", "enum": ["gene_id"]}
+    }},
+    "enrichment": {"type": "object", "additionalProperties": false,
+      "required": ["orgdb", "key_type", "ontology", "fdr", "min_gs_size", "max_gs_size", "gsea_rank", "seed", "eps", "show_category"],
+      "properties": {
+        "orgdb": {"type": "string", "enum": ["org.Mm.eg.db", "org.Hs.eg.db"]}, "key_type": {"type": "string", "enum": ["ENSEMBL"]},
+        "ontology": {"type": "string", "enum": ["ALL", "BP", "MF", "CC"]}, "fdr": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+        "min_gs_size": {"type": "integer", "minimum": 1}, "max_gs_size": {"type": "integer", "minimum": 1},
+        "gsea_rank": {"type": "string", "enum": ["log2FoldChange", "stat"]}, "seed": {"type": "integer", "minimum": 1},
+        "eps": {"type": "number", "minimum": 0}, "show_category": {"type": "integer", "minimum": 1}
+      }
+    },
+    "environment": {"type": "object", "additionalProperties": false, "properties": {
+      "shell_path_prepend": {"type": "array", "items": {"type": "string", "pattern": "^/"}},
+      "rscript": {"type": "string", "pattern": "^/"}
+    }},
+    "execution": {"type": "object", "additionalProperties": false, "required": ["resume", "overwrite", "mode"], "properties": {
+      "resume": {"type": "boolean"}, "overwrite": {"type": "boolean"}, "mode": {"type": "string", "enum": ["standard", "standard_custom", "reuse"]}
+    }}
+  }
+}

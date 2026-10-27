@@ -1,0 +1,84 @@
+project:
+  id: xiehe_zhouyisheng_20261018
+  description: Pilot workflow validation using 6 mouse samples in two groups (10GY5FFRT
+    and Control, three samples per group), comparing 10GY5FFRT versus Control. The
+    full 21-sample, seven-group study remains a subsequent phase documented in analysis_plan.md.
+kubernetes:
+  namespace: renkelab-zhangke
+  shell_pod: zk1-med-6ff4f46898-rlbtd
+  r_pod: zkr1-med-5d8b8c5b48-tggbt
+  account: zhangke
+  context: zhangke@med.thu
+species:
+  name: mouse
+  genome: GRCm39
+  annotation: Ensembl_109
+paths:
+  input_dir: /home/zhangke/RNA-seq/20261027_xiehe_zhou/raw_data
+  output_dir: /home/zhangke/RNA-seq/20261027_xiehe_zhou/results
+  reference_dir: /home/zhangke/public_database
+  counts_file: /home/zhangke/RNA-seq/20261027_xiehe_zhou/counts_data
+input:
+  type: fastq
+  paired_end: yes
+  strandedness: unstranded
+analysis:
+  fastp: yes
+  star: yes
+  featurecounts: yes
+  sample_qc: yes
+  differential_expression: yes
+  go_enrichment: yes
+  kegg_enrichment: no
+  gsea: yes
+  custom_analysis: no
+  multiqc: yes
+deseq2:
+  design: ~ group
+  fdr: 0.05
+  log2fc_cutoff: 1
+  fit_type: parametric
+execution:
+  resume: no
+  overwrite: no
+  mode: standard
+schema_version: 1.0-review
+metadata:
+  samples: samples.csv
+  contrasts: contrasts.csv
+  delimiter: ','
+references:
+  fasta: /home/zhangke/public_database/STAR_Mus_musculus_GRCm39/fasta_gtf/Mus_musculus.GRCm39.dna.primary_assembly.fa
+  gtf: /home/zhangke/public_database/STAR_Mus_musculus_GRCm39/fasta_gtf/Mus_musculus.GRCm39.109.gtf
+  star_index: /home/zhangke/public_database/STAR_Mus_musculus_GRCm39/index
+resources:
+  fastp_threads: 12
+  star_threads: 12
+  star_sort_threads: 12
+  star_sort_memory_bytes: .na.integer
+  featurecounts_threads: 12
+environment:
+  shell_path_prepend:
+  - /miniconda3/bin
+  rscript: /usr/bin/Rscript
+fastp:
+  extra_args: /home/zhangke/soft/fastp_dir/Illumina_fastp.config
+  expected_version: 0.21.0
+featurecounts:
+  count_unit: fragment
+  feature_type: exon
+  gene_attribute: gene_id
+filtering:
+  method: legacy_nonzero_fraction
+  fraction: 0.75
+enrichment:
+  orgdb: org.Mm.eg.db
+  key_type: ENSEMBL
+  ontology: ALL
+  fdr: 0.05
+  min_gs_size: 3
+  max_gs_size: 800
+  gsea_rank: log2FoldChange
+  seed: 20261027
+  eps: 1.0e-10
+  show_category: 20

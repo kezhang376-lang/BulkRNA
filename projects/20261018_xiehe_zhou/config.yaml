@@ -1,0 +1,99 @@
+# 按 review.example.yaml 补齐结构，保留用户填写的项目信息和已有参数。
+# null 表示尚未核实；本配置不代表正式启动授权。
+schema_version: "1.0-review"
+
+project:
+  id: "xiehe_zhouyisheng_20261018"
+  description: "Pilot workflow validation using 6 mouse samples in two groups (10GY5FFRT and Control, three samples per group), comparing 10GY5FFRT versus Control. The full 21-sample, seven-group study remains a subsequent phase documented in analysis_plan.md."
+
+metadata:
+  samples: "samples.csv"
+  contrasts: "contrasts.csv"
+  delimiter: ","  # CSV格式已核实：样本4列、比较3列。
+
+kubernetes:
+  context: "zhangke@med.thu"  # 已只读核实；不是 Pod 内用户名。
+  namespace: "renkelab-zhangke"
+  shell_pod: "zk2-med-6dc5cbcb5d-wd5lj"
+  r_pod: "zkr1-med-5d8b8c5b48-tggbt"
+  account: "zhangke"  # Pod 内的 Linux 执行账号；禁止 root 或其他账号运行分析。
+
+species:
+  name: "mouse"
+  genome: "GRCm39"
+  annotation: "Ensembl_109"
+
+paths:
+  input_dir: "/home/zhangke/RNA-seq/20261027_xiehe_zhou/raw_data"
+  output_dir: "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results"
+  reference_dir: "/home/zhangke/public_database"
+  counts_file: "/home/zhangke/RNA-seq/20261027_xiehe_zhou/counts_data"  # 仅 input.type=counts 时使用。
+
+input:
+  type: "fastq"
+  paired_end: true
+  strandedness: "unstranded"  # 待核实：unstranded / forward / reverse，不能猜填。
+
+analysis:
+  fastp: true
+  star: true
+  featurecounts: true
+  sample_qc: true
+  differential_expression: true
+  go_enrichment: true
+  kegg_enrichment: false
+  gsea: true
+  custom_analysis: false
+  multiqc: true  # 新模板中的汇总报告开关。
+
+references:
+  fasta: "/home/zhangke/public_database/STAR_Mus_musculus_GRCm39/fasta_gtf/Mus_musculus.GRCm39.dna.primary_assembly.fa"  # 待核实准确文件；reference_dir 不能替代 FASTA/GTF/index。
+  gtf: "/home/zhangke/public_database/STAR_Mus_musculus_GRCm39/fasta_gtf/Mus_musculus.GRCm39.109.gtf"
+  star_index: "/home/zhangke/public_database/STAR_Mus_musculus_GRCm39/index"
+
+resources:
+  fastp_threads: 12  # 根据 Pod 资源限额填写，不直接照搬旧脚本。
+  star_threads: 12
+  star_sort_threads: 12
+  star_sort_memory_bytes: 4294967296.0  # 4 GiB；用浮点字面量避免R YAML的32位整数溢出，执行时转为整数。
+  featurecounts_threads: 12
+
+environment:
+  shell_path_prepend: ["/miniconda3/bin"]  # 复用此前核实的工具目录，无需依赖交互式登录配置。
+  rscript: "/usr/bin/Rscript"  # 固定R Pod中已核实的R；不使用Shell Pod的Conda R。
+
+fastp:
+  extra_args: "/home/zhangke/soft/fastp_dir/Illumina_fastp.config"  # 读取旧键值配置，使用其中 fastp 字段指定的程序及全部过滤参数。
+  expected_version: "0.21.0"  # 按用户指定固定旧版本；不允许回退使用PATH中的新版。
+
+featurecounts:
+  count_unit: "fragment"
+  feature_type: "exon"
+  gene_attribute: "gene_id"
+
+filtering:
+  method: "legacy_nonzero_fraction"  # 保留当前设置：6样本时至少4样本非零；方法影响见分析计划。
+  fraction: 0.75
+
+deseq2:
+  design: "~ group"
+  fdr: 0.05
+  log2fc_cutoff: 1
+  fit_type: "parametric"
+
+enrichment:
+  orgdb: "org.Mm.eg.db"
+  key_type: "ENSEMBL"
+  ontology: "ALL"
+  fdr: 0.05
+  min_gs_size: 3  # 来自新模板的候选值，待确认。
+  max_gs_size: 800
+  gsea_rank: "log2FoldChange"
+  seed: 20261027
+  eps: 0.0000000001
+  show_category: 20
+
+execution:
+  resume: false  # 本次全新运行；不复用未经指纹验证的历史结果。
+  overwrite: false
+  mode: "standard"

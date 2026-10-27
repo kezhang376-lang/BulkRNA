@@ -1,0 +1,110 @@
+{
+  "audit_utc": "2026-10-27T12:13:24.798629+00:00",
+  "status": "shell_outputs_verified",
+  "run_id": "v1_test6_20261027_retry01",
+  "shell_status": {
+    "status": "succeeded",
+    "finished": "2026-10-27T11:43:52.681463+00:00"
+  },
+  "uid": 1482,
+  "gene_rows": 57010,
+  "sample_columns": [
+    "10GY5FFRT-1",
+    "10GY5FFRT-2",
+    "10GY5FFRT-3",
+    "control-1",
+    "control-2",
+    "control-3"
+  ],
+  "samples": [
+    {
+      "sample_id": "10GY5FFRT-1",
+      "raw_pairs": 32595221,
+      "clean_pairs": 32530886,
+      "raw_q30": 0.976876,
+      "clean_q30": 0.977462,
+      "unique_mapping": "90.56%",
+      "bam_bytes": 2430051114,
+      "assigned_fragments": 26643777,
+      "assigned_fraction": 0.7546884962037383,
+      "bam_quickcheck": "passed",
+      "bam_check_stderr": "/miniconda3/bin/samtools: /miniconda3/bin/../lib/libtinfow.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n"
+    },
+    {
+      "sample_id": "10GY5FFRT-2",
+      "raw_pairs": 23832913,
+      "clean_pairs": 23780019,
+      "raw_q30": 0.982833,
+      "clean_q30": 0.983269,
+      "unique_mapping": "90.36%",
+      "bam_bytes": 1860251207,
+      "assigned_fragments": 19416604,
+      "assigned_fraction": 0.7524915722286696,
+      "bam_quickcheck": "passed",
+      "bam_check_stderr": "/miniconda3/bin/samtools: /miniconda3/bin/../lib/libtinfow.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n"
+    },
+    {
+      "sample_id": "10GY5FFRT-3",
+      "raw_pairs": 24844216,
+      "clean_pairs": 24790314,
+      "raw_q30": 0.98203,
+      "clean_q30": 0.982799,
+      "unique_mapping": "90.43%",
+      "bam_bytes": 1951718196,
+      "assigned_fragments": 20134932,
+      "assigned_fraction": 0.7489958548602946,
+      "bam_quickcheck": "passed",
+      "bam_check_stderr": "/miniconda3/bin/samtools: /miniconda3/bin/../lib/libtinfow.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n"
+    },
+    {
+      "sample_id": "control-1",
+      "raw_pairs": 34915913,
+      "clean_pairs": 34861442,
+      "raw_q30": 0.979128,
+      "clean_q30": 0.979603,
+      "unique_mapping": "90.52%",
+      "bam_bytes": 2572571107,
+      "assigned_fragments": 28442016,
+      "assigned_fraction": 0.7479648592936935,
+      "bam_quickcheck": "passed",
+      "bam_check_stderr": "/miniconda3/bin/samtools: /miniconda3/bin/../lib/libtinfow.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n"
+    },
+    {
+      "sample_id": "control-2",
+      "raw_pairs": 32100689,
+      "clean_pairs": 32031137,
+      "raw_q30": 0.982765,
+      "clean_q30": 0.983287,
+      "unique_mapping": "90.07%",
+      "bam_bytes": 2461731954,
+      "assigned_fragments": 25879737,
+      "assigned_fraction": 0.7439150479475081,
+      "bam_quickcheck": "passed",
+      "bam_check_stderr": "/miniconda3/bin/samtools: /miniconda3/bin/../lib/libtinfow.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n"
+    },
+    {
+      "sample_id": "control-3",
+      "raw_pairs": 26451747,
+      "clean_pairs": 26396445,
+      "raw_q30": 0.98309,
+      "clean_q30": 0.983267,
+      "unique_mapping": "90.02%",
+      "bam_bytes": 2050881448,
+      "assigned_fragments": 21409545,
+      "assigned_fraction": 0.74423931407278,
+      "bam_quickcheck": "passed",
+      "bam_check_stderr": "/miniconda3/bin/samtools: /miniconda3/bin/../lib/libtinfow.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n/miniconda3/bin/samtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by /miniconda3/bin/samtools)\n"
+    }
+  ],
+  "tool_command_counts": {
+    "STAR": 6,
+    "fastp": 6,
+    "featureCounts": 1,
+    "multiqc": 1,
+    "samtools": 12
+  },
+  "raw_counts_sha256": "0e163c0e49aca82261962eedf8cd461173b3841957fe576d3132416505a28654",
+  "multiqc_bytes": 5074584,
+  "r_started": false,
+  "note": "BAM quickcheck/index presence verified; this is not exhaustive BAM/FASTQ full-stream validation or a biological conclusion."
+}

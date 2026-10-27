@@ -1,0 +1,61 @@
+{
+  "bundle": "/home/zhangke/RNA-seq/20261027_xiehe_zhou/workflow/v1_test6_20261027_r2",
+  "full_run_root": "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_r2",
+  "full_run_exists": false,
+  "probes": {
+    "shell_smoke": {
+      "status": {
+        "status": "succeeded",
+        "kind": "compatibility_only",
+        "pairs": 10000,
+        "note": "Not the six-sample analysis; do not use fixture results as biological findings"
+      }
+    },
+    "r_smoke": {
+      "status": {
+        "status": "succeeded",
+        "kind": "compatibility_only",
+        "genes": 1200,
+        "note": "Synthetic QC/DE/GO results are not biological findings"
+      }
+    }
+  },
+  "shell_versions": {
+    "fastp": "fastp 0.21.0",
+    "STAR": "2.7.11b",
+    "featureCounts": "featureCounts v2.0.6",
+    "samtools": "samtools 1.21\nUsing htslib 1.21\nCopyright (C) 2024 Genome Research Ltd.\n\nSamtools compilation details:\n    Features:       build=configure curses=yes \n    CC:             /opt/conda/conda-bld/samtools_1726175734089/_build_env/bin/x86_64-conda-linux-gnu-cc\n    CPPFLAGS:       -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /miniconda3/include\n    CFLAGS:         -Wall -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /miniconda3/include -fdebug-prefix-map=/opt/conda/conda-bld/samtools_1726175734089/work=/usr/local/src/conda/samtools-1.21 -fdebug-prefix-map=/miniconda3=/usr/local/src/conda-prefix\n    LDFLAGS:        -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/miniconda3/lib -Wl,-rpath-link,/miniconda3/lib -L/miniconda3/lib\n    HTSDIR:         \n    LIBS:           \n    CURSES_LIB:     -ltinfow -lncursesw\n\nHTSlib compilation details:\n    Features:       build=configure libcurl=yes S3=yes GCS=yes libdeflate=yes lzma=yes bzip2=yes plugins=yes plugin-path=/miniconda3/libexec/htslib htscodecs=1.6.1\n    CC:             /opt/conda/conda-bld/htslib_1726172129301/_build_env/bin/x86_64-conda-linux-gnu-cc\n    CPPFLAGS:       -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /miniconda3/include\n    CFLAGS:         -Wall -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /miniconda3/include -fdebug-prefix-map=/opt/conda/conda-bld/htslib_1726172129301/work=/usr/local/src/conda/htslib-1.21 -fdebug-prefix-map=/miniconda3=/usr/local/src/conda-prefix -fvisibility=hidden\n    LDFLAGS:        -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/miniconda3/lib -Wl,-rpath-link,/miniconda3/lib -L/miniconda3/lib -fvisibility=hidden -rdynamic\n\nHTSlib URL scheme handlers present:\n    built-in:\t file, preload, data\n    S3 Multipart Upload:\t s3w+https, s3w+http, s3w\n    Amazon S3:\t s3+https, s3, s3+http\n    libcurl:\t gophers, smtp, wss, smb, rtsp, tftp, pop3, smbs, imaps, pop3s, ws, ftps, https, ftp, gopher, sftp, imap, http, smtps, scp, dict, mqtt, telnet\n    Google Cloud Storage:\t gs+http, gs+https, gs\n    crypt4gh-needed:\t crypt4gh\n    mem:\t mem\nsamtools: /miniconda3/bin/../lib/libtinfow.so.6: no version information available (required by samtools)\nsamtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by samtools)\nsamtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by samtools)\nsamtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by samtools)",
+    "multiqc": "multiqc, version 1.30"
+  },
+  "fastp_binary": "/home/zhangke/soft/fastp_dir/fastp",
+  "fastp_config_sha256": "fe736fbeba3e34117cafd0e0bae9ac83648bd5ed4775fb4fe8633976448ddb7c",
+  "fastp_summary.tsv": "sample_id\tbefore_reads\tafter_reads\tbefore_q30_fraction\tafter_q30_fraction\n10GY5FFRT-1\t20000\t19952\t0.972007\t0.972675\n",
+  "star_summary.tsv": "sample_id\tinput_pairs\tunique_pairs\tunique_percent\n10GY5FFRT-1\t9976\t9044\t90.66%\n",
+  "assignment_summary.tsv": "sample_id\tprocessed_units\tassigned_units\tassigned_fraction\n10GY5FFRT-1\t10758\t8156\t0.7581334820598624\n",
+  "multiqc_report_exists": true,
+  "R_stage_status": {
+    "status": "succeeded",
+    "finished": "2026-10-27 07:46:15 UTC"
+  },
+  "R_de_summary": "\"contrast_id\",\"treatment\",\"control\",\"tested\",\"up\",\"down\",\"not_evaluated\"\n\"10GY5FFRT_vs_Control\",\"10GY5FFRT\",\"Control\",1200,122,113,0\n",
+  "R_pdf_count": 7,
+  "R_report_bytes": 5582,
+  "R_enrichment_statuses": {
+    "go_gsea_status.json": {
+      "status": "no_significant_terms",
+      "terms": 0
+    },
+    "go_ora_up_status.json": {
+      "status": "no_significant_terms",
+      "terms": 0
+    },
+    "go_ora_down_status.json": {
+      "status": "no_significant_terms",
+      "terms": 0
+    }
+  },
+  "R_warning_or_error_lines": [
+    "Warning messages:"
+  ],
+  "bundle_mismatches": []
+}

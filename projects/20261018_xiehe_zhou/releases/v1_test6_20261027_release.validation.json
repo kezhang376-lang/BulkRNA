@@ -1,0 +1,72 @@
+{
+  "bundle": "/home/zhangke/RNA-seq/20261027_xiehe_zhou/workflow/v1_test6_20261027_release",
+  "uid": 1482,
+  "run_id": "v1_test6_20261027_release",
+  "full_run_root": "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_release",
+  "full_run_exists": false,
+  "bundle_checksum_mismatches": [],
+  "bash_syntax": {
+    "run_R.sh": {
+      "exit_code": 0,
+      "stderr": ""
+    },
+    "run_shell.sh": {
+      "exit_code": 0,
+      "stderr": ""
+    },
+    "start_R.sh": {
+      "exit_code": 0,
+      "stderr": ""
+    },
+    "start_shell.sh": {
+      "exit_code": 0,
+      "stderr": ""
+    }
+  },
+  "python_syntax": {
+    "launch_stage.py": "passed",
+    "shell_stage.py": "passed",
+    "start_stage.py": "passed"
+  },
+  "shell_worker_same_as_tested_r2": true,
+  "same_config_as_tested_r2": true,
+  "shell_probe_status": {
+    "status": "succeeded",
+    "kind": "compatibility_only",
+    "pairs": 10000,
+    "note": "Not the six-sample analysis; do not use fixture results as biological findings"
+  },
+  "shell_probe_star_summary": "sample_id\tinput_pairs\tunique_pairs\tunique_percent\n10GY5FFRT-1\t9976\t9044\t90.66%\n",
+  "R_probe_status": {
+    "status": "succeeded",
+    "kind": "compatibility_only",
+    "genes": 1200,
+    "note": "Synthetic QC/DE/GO results are not biological findings"
+  },
+  "R_report_exists": true,
+  "R_backend": {
+    "backend": "fgsea::fgseaMultilevel",
+    "version": "1.38.0",
+    "seed": 20261027,
+    "eps": 1e-10,
+    "min_gs_size": 3,
+    "max_gs_size": 800,
+    "score_type": "std",
+    "exponent": 1,
+    "nPermSimple": 1000,
+    "sampleSize": 101,
+    "mapping": "OrgDb GOALL; set sizes intersected with ranked genes; same fgsea default semantics"
+  },
+  "R_full_GO_tables": 3,
+  "positive_probe_status": {
+    "status": "succeeded",
+    "kind": "synthetic_positive_only",
+    "target_go": "GO:0000122"
+  },
+  "positive_plots": [
+    "out/synthetic_positive/go_gsea_dotplot.pdf",
+    "out/synthetic_positive/go_ora_up_dotplot.pdf",
+    "target_go/GO_0000122.pdf"
+  ],
+  "R_warning_context": []
+}

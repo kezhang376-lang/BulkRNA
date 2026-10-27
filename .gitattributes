@@ -1,0 +1,6 @@
+# Preserve exact bytes: frozen bundles and their SHA256 manifests depend on them.
+# Scripts are emitted as UTF-8/LF by the bundle builder where required.
+* -text
+*.gz binary
+*.pdf binary
+*.rds binary

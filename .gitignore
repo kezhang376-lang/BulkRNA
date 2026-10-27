@@ -1,0 +1,31 @@
+# 本地临时文件与解释器缓存，不忽略项目配置或分析计划。
+__pycache__/
+*.py[cod]
+.Rhistory
+.RData
+Rplots.pdf
+.DS_Store
+*.tmp
+# 大型测序数据禁止提交。
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.bam
+*.bai
+*.cram
+*.crai
+# Local result downloads stay on disk; Git versions code and run evidence.
+/projects/*/qc/
+/projects/*/custom/results/*
+!/projects/*/custom/results/.gitkeep
+/projects/*/results/
+/projects/*/raw_data/
+# Local credentials and editor caches are never part of releases.
+.env
+.env.local
+.venv/
+.pytest_cache/
+.Rproj.user/
+.vscode/
+.idea/

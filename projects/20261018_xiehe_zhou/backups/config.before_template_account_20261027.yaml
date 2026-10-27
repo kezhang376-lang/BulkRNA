@@ -1,0 +1,44 @@
+project:
+  id: "xiehe_zhouyisheng_20261018"
+  description: "This project, conducted in collaboration with Dr. Zhou at Peking Union Medical College Hospital (PUMCH), involves Bulk RNA-seq analysis of 21 mouse samples divided into seven experimental groups (A¨CG), with three biological replicates per group. The primary objectives are to identify differentially expressed genes through pairwise comparisons between Group A and each of the other six groups, as well as B vs. C, D vs. E, and F vs. G; investigate transcriptional differences among Groups C, E, and G; and perform an integrated analysis across all seven groups to identify overall gene expression differences beyond pairwise comparisons. Multi-group differential expression analysis using the DESeq2 likelihood ratio test (LRT), gene expression pattern clustering, and exploratory weighted gene co-expression network analysis (WGCNA) will be considered to identify group-associated expression signatures, co-expression modules, and potential hub genes. Functional enrichment analyses, including GO, KEGG, and GSEA, will be performed to explore the biological pathways and molecular mechanisms underlying these transcriptional differences."
+
+kubernetes:
+  namespace: "default"
+  shell_pod: "zk1-med-6ff4f46898-rlbtd"
+  r_pod: "zkr1-med-5d8b8c5b48-tggbt"
+  id:"zhangke"
+
+species:
+  name: "mouse"
+  genome: "GRCm39"
+  annotation: "Ensembl_109"
+
+paths:
+  input_dir: "/home/zhangke/RNA-seq/20261027_xiehe_zhou/raw_data"
+  output_dir: "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results"
+  reference_dir: "/home/zhangke/public_database"
+
+input:
+  type: "fastq"
+  paired_end: true
+
+analysis:
+  fastp: true
+  star: true
+  featurecounts: true
+  sample_qc: true
+  differential_expression: true
+  go_enrichment: true
+  kegg_enrichment: true
+  gsea: true
+  custom_analysis: false
+
+deseq2:
+  design: "~ group"
+  fdr: 0.05
+  log2fc_cutoff: 1
+
+execution:
+  resume: true
+  overwrite: false
+  mode: "standard"

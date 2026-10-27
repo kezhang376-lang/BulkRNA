@@ -1,0 +1,171 @@
+{
+  "uid": 1482,
+  "cgroup": {
+    "/proc/self/cgroup": "12:blkio:/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-pod170b4aa6_e209_4c6b_80de_a0078f9fbf9c.slice/cri-containerd-e0718154f78a1fab26cdc4ad2575fd06535a74cfcd5712d1ab207f433fbb3c69.scope\n11:rdma:/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-pod170b4aa6_e209_4c6b_80de_a0078f9fbf9c.slice/cri-containerd-e0718154f78a1fab26cdc4ad2575fd06535a74cfcd5712d1ab207f433fbb3c69.scope\n10:pids:/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-pod170b4aa6_e209_4c6b_80de_a0078f9fbf9c.slice/cri-containerd-e0718154f78a1fab26cdc4ad2575fd06535a74cfcd5712d1ab207f433fbb3c69.scope\n9:devices:/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-pod170b4aa6_e209_4c6b_80de_a0078f9fbf9c.slice/cri-containerd-e0718154f78a1fab26cdc4ad2575fd06535a74cfcd5712d1ab207f433fbb3c69.scope\n8:freezer:/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-pod170b4aa6_e209_4c6b_80de_a0078f9fbf9c.slice/cri-containerd-e0718154f78a1fab26cdc4ad2575fd06535a74cfcd5712d1ab207f433fbb3c69.scope\n7:hugetlb:/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-pod170b4aa6_e209_4c6b_80de_a0078f9fbf9c.slice/cri-containerd-e0718154f78a1fab26cdc4ad2575fd06535a74cfcd5712d1ab207f433fbb3c69.scope\n6:net_cls,net_prio:/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-pod170b4aa6_e209_4c6b_80de_a0078f9fbf9c.slice/cri-containerd-e0718154f78a1fab26cdc4ad2575fd06535a74cfcd5712d1ab207f433fbb3c69.scope\n5:cpu,cpuacct:/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-pod170b4aa6_e209_4c6b_80de_a0078f9fbf9c.slice/cri-containerd-e0718154f78a1fab26cdc4ad2575fd06535a74cfcd5712d1ab207f433fbb3c69.scope\n4:memory:/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-pod170b4aa6_e209_4c6b_80de_a0078f9fbf9c.slice/cri-containerd-e0718154f78a1fab26cdc4ad2575fd06535a74cfcd5712d1ab207f433fbb3c69.scope\n3:perf_event:/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-pod170b4aa6_e209_4c6b_80de_a0078f9fbf9c.slice/cri-containerd-e0718154f78a1fab26cdc4ad2575fd06535a74cfcd5712d1ab207f433fbb3c69.scope\n2:cpuset:/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-pod170b4aa6_e209_4c6b_80de_a0078f9fbf9c.slice/cri-containerd-e0718154f78a1fab26cdc4ad2575fd06535a74cfcd5712d1ab207f433fbb3c69.scope\n1:name=systemd:/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-pod170b4aa6_e209_4c6b_80de_a0078f9fbf9c.slice/cri-containerd-e0718154f78a1fab26cdc4ad2575fd06535a74cfcd5712d1ab207f433fbb3c69.scope\n0::/\n",
+    "/sys/fs/cgroup/memory/memory.limit_in_bytes": "53687091200\n",
+    "/sys/fs/cgroup/memory/memory.max_usage_in_bytes": "53694537728\n",
+    "/sys/fs/cgroup/memory/memory.failcnt": "772\n",
+    "/sys/fs/cgroup/memory/memory.oom_control": "oom_kill_disable 0\nunder_oom 0\noom_kill 2\n",
+    "/sys/fs/cgroup/memory/memory.usage_in_bytes": "11790508032\n",
+    "/sys/fs/cgroup/memory.events": "[Errno 2] No such file or directory: '/sys/fs/cgroup/memory.events'"
+  },
+  "star_logs": {
+    "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_release/shell/bam/10GY5FFRT-1/10GY5FFRT-1.Log.out": [
+      "Completed: thread #11",
+      "Completed: thread #2",
+      "Joined thread # 2",
+      "Joined thread # 3",
+      "Joined thread # 4",
+      "Completed: thread #5",
+      "Joined thread # 5",
+      "Joined thread # 6",
+      "Joined thread # 7",
+      "Joined thread # 8",
+      "Completed: thread #9",
+      "Joined thread # 9",
+      "Joined thread # 10",
+      "Joined thread # 11",
+      "Oct 27 09:07:19 ..... finished mapping",
+      "RAM after mapping:",
+      "VmPeak:\t29930196 kB; VmSize:\t29802100 kB; VmHWM:\t29298820 kB; VmRSS:\t29296104 kB; ",
+      "RAM after freeing genome index memory:",
+      "VmPeak:\t29930196 kB; VmSize:\t 3687284 kB; VmHWM:\t29298820 kB; VmRSS:\t 3181288 kB; ",
+      "Oct 27 09:07:22 ..... started sorting BAM",
+      "Max memory needed for sorting = 504581406",
+      "ALL DONE!"
+    ],
+    "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_release/shell/bam/10GY5FFRT-1/10GY5FFRT-1.Log.progress.out": [
+      "           Time    Speed        Read     Read   Mapped   Mapped   Mapped   Mapped Unmapped Unmapped Unmapped Unmapped",
+      "                    M/hr      number   length   unique   length   MMrate    multi   multi+       MM    short    other",
+      "Oct 27 08:59:54    197.5     3291426      282    90.6%    282.1     0.3%     7.0%     0.3%     0.0%     1.9%     0.2%",
+      "Oct 27 09:00:54    220.6     7351827      282    90.6%    281.8     0.3%     7.0%     0.3%     0.0%     1.9%     0.2%",
+      "Oct 27 09:01:54    222.8    11139575      282    90.6%    281.7     0.3%     7.0%     0.3%     0.0%     1.9%     0.2%",
+      "Oct 27 09:02:55    229.6    15369770      282    90.6%    281.6     0.3%     7.0%     0.3%     0.0%     1.9%     0.2%",
+      "Oct 27 09:03:55    231.2    19330036      282    90.6%    281.6     0.3%     7.0%     0.3%     0.0%     1.9%     0.2%",
+      "Oct 27 09:04:55    228.7    22930299      282    90.6%    281.6     0.3%     7.0%     0.3%     0.0%     1.9%     0.2%",
+      "Oct 27 09:05:55    232.2    27159350      282    90.6%    281.5     0.3%     7.0%     0.3%     0.0%     1.9%     0.2%",
+      "Oct 27 09:06:55    232.9    31117395      282    90.6%    281.5     0.3%     7.0%     0.3%     0.0%     1.9%     0.2%",
+      "Oct 27 09:09:37    182.1    32530886      282    90.6%    281.5     0.3%     7.0%     0.3%     0.0%     1.9%     0.2%",
+      "ALL DONE!"
+    ],
+    "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_release/shell/bam/10GY5FFRT-1/10GY5FFRT-1.Log.final.out": [
+      "                       Number of splices: AT/AC |\t28416",
+      "               Number of splices: Non-canonical |\t55215",
+      "                      Mismatch rate per base, % |\t0.31%",
+      "                         Deletion rate per base |\t0.02%",
+      "                        Deletion average length |\t2.26",
+      "                        Insertion rate per base |\t0.01%",
+      "                       Insertion average length |\t2.19",
+      "                             MULTI-MAPPING READS:",
+      "        Number of reads mapped to multiple loci |\t2277982",
+      "             % of reads mapped to multiple loci |\t7.00%",
+      "        Number of reads mapped to too many loci |\t98640",
+      "             % of reads mapped to too many loci |\t0.30%",
+      "                                  UNMAPPED READS:",
+      "  Number of reads unmapped: too many mismatches |\t0",
+      "       % of reads unmapped: too many mismatches |\t0.00%",
+      "            Number of reads unmapped: too short |\t615046",
+      "                 % of reads unmapped: too short |\t1.89%",
+      "                Number of reads unmapped: other |\t80527",
+      "                     % of reads unmapped: other |\t0.25%",
+      "                                  CHIMERIC READS:",
+      "                       Number of chimeric reads |\t0",
+      "                            % of chimeric reads |\t0.00%"
+    ],
+    "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_release/shell/bam/10GY5FFRT-2/10GY5FFRT-2.Log.out": [
+      "27\t11\t157029877",
+      "28\t12\t57195078",
+      "29\t12\t101490095",
+      "30\t13\t11202200",
+      "31\t13\t116015370",
+      "32\t13\t141586167",
+      "33\t14\t46572236",
+      "34\t14\t112485192",
+      "35\t14\t145060786",
+      "36\t15\t68608995",
+      "37\t15\t125140318",
+      "38\t16\t28851992",
+      "39\t16\t101476460",
+      "40\t16\t142606626",
+      "41\t17\t71348667",
+      "42\t17\t112567015",
+      "43\t18\t36691445",
+      "44\t18\t72655965",
+      "45\t18\t107497294",
+      "46\t19\t6125",
+      "47\t19\t8643",
+      "48\t20\t70847386"
+    ],
+    "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_release/shell/bam/10GY5FFRT-2/10GY5FFRT-2.Log.progress.out": [
+      "           Time    Speed        Read     Read   Mapped   Mapped   Mapped   Mapped Unmapped Unmapped Unmapped Unmapped",
+      "                    M/hr      number   length   unique   length   MMrate    multi   multi+       MM    short    other",
+      "Oct 27 09:15:26    181.7     3027536      277    90.3%    276.6     0.3%     7.1%     0.3%     0.0%     2.0%     0.3%",
+      "Oct 27 09:16:26    211.9     7061906      277    90.3%    276.6     0.3%     7.0%     0.3%     0.0%     2.0%     0.3%"
+    ]
+  },
+  "fastp_summaries": {
+    "10GY5FFRT-1.fastp": {
+      "before_filtering": {
+        "total_reads": 65190442,
+        "total_bases": 9778566300,
+        "q20_bases": 9655004348,
+        "q30_bases": 9552445612,
+        "q20_rate": 0.987364,
+        "q30_rate": 0.976876,
+        "read1_mean_length": 150,
+        "read2_mean_length": 150,
+        "gc_content": 0.490623
+      },
+      "after_filtering": {
+        "total_reads": 65061772,
+        "total_bases": 9180179431,
+        "q20_bases": 9067702838,
+        "q30_bases": 8973280880,
+        "q20_rate": 0.987748,
+        "q30_rate": 0.977462,
+        "read1_mean_length": 141,
+        "read2_mean_length": 141,
+        "gc_content": 0.48898
+      }
+    },
+    "10GY5FFRT-2.fastp": {
+      "before_filtering": {
+        "total_reads": 47665826,
+        "total_bases": 7149873900,
+        "q20_bases": 7068247998,
+        "q30_bases": 7027129747,
+        "q20_rate": 0.988584,
+        "q30_rate": 0.982833,
+        "read1_mean_length": 150,
+        "read2_mean_length": 150,
+        "gc_content": 0.487191
+      },
+      "after_filtering": {
+        "total_reads": 47560038,
+        "total_bases": 6589885224,
+        "q20_bases": 6515738910,
+        "q30_bases": 6479632827,
+        "q20_rate": 0.988748,
+        "q30_rate": 0.983269,
+        "read1_mean_length": 138,
+        "read2_mean_length": 138,
+        "gc_content": 0.484729
+      }
+    }
+  },
+  "files": {
+    "bam/10GY5FFRT-1/10GY5FFRT-1.Log.out": 11594,
+    "bam/10GY5FFRT-1/10GY5FFRT-1.Log.progress.out": 1308,
+    "bam/10GY5FFRT-1/10GY5FFRT-1.Aligned.sortedByCoord.out.bam": 2430026836,
+    "bam/10GY5FFRT-1/10GY5FFRT-1.Aligned.toTranscriptome.out.bam": 5138068767,
+    "bam/10GY5FFRT-1/10GY5FFRT-1.SJ.out.tab": 7550173,
+    "bam/10GY5FFRT-1/10GY5FFRT-1.ReadsPerGene.out.tab": 1520712,
+    "bam/10GY5FFRT-1/10GY5FFRT-1.Log.final.out": 2033,
+    "bam/10GY5FFRT-1/10GY5FFRT-1.Aligned.sortedByCoord.out.bam.bai": 2597856,
+    "bam/10GY5FFRT-2/10GY5FFRT-2.Log.out": 10743,
+    "bam/10GY5FFRT-2/10GY5FFRT-2.Log.progress.out": 472,
+    "bam/10GY5FFRT-2/10GY5FFRT-2.Aligned.sortedByCoord.out.bam": 0,
+    "bam/10GY5FFRT-2/10GY5FFRT-2.Aligned.toTranscriptome.out.bam": 1634729984
+  },
+  "processes": "    PID    PPID     ELAPSED %CPU   RSS COMMAND\n     16       1  3-20:24:36  0.0  3808 bash\n   1169      16  3-20:24:31  0.0  1264 tail\n   1193    1170  3-20:23:19  0.0  4848 bash\n   1926    1903  1-08:35:25  0.0  4104 bash\n   2626    2603  1-05:32:35  0.0  6164 bash\n   3331    3308  1-05:28:39  0.0  4760 bash\n   4254       1  1-03:09:41  0.0     0 sh.orig <defunct>\n   4259       1  1-03:09:28  0.0     0 sh.orig <defunct>\n   4264       1  1-03:09:09  0.0     0 sh.orig <defunct>\n   4269       1  1-03:07:43  0.0     0 sh.orig <defunct>\n   4274       1  1-03:07:08  0.0     0 sh.orig <defunct>\n   4289       1  1-03:06:12  0.0     0 sh.orig <defunct>\n   4294       1  1-03:05:52  0.0     0 sh.orig <defunct>\n   4299       1  1-03:05:23  0.0     0 sh.orig <defunct>\n   4304       1  1-03:04:05  0.0     0 sh.orig <defunct>\n   4309       1  1-03:02:01  0.0     0 sh.orig <defunct>\n   4314       1  1-03:01:53  0.0     0 sh.orig <defunct>\n   4324       1  1-03:00:33  0.0     0 sh.orig <defunct>\n   4329       1  1-02:59:59  0.0     0 sh.orig <defunct>\n   4334       1  1-02:59:37  0.0     0 sh.orig <defunct>\n   4344       1  1-02:58:19  0.0     0 sh.orig <defunct>\n   4357       1  1-02:57:02  0.0     0 sh.orig <defunct>\n   4362       1  1-02:56:48  0.0     0 sh.orig <defunct>\n   4367       1  1-02:54:11  0.0     0 sh.orig <defunct>\n   4395       1  1-02:50:09  0.0     0 sh.orig <defunct>\n   4411       1  1-02:46:35  0.0     0 sh.orig <defunct>\n   4420       1  1-02:36:57  0.0     0 sh.orig <defunct>\n   4425       1  1-02:33:22  0.0     0 sh.orig <defunct>\n   4430       1  1-02:32:08  0.0     0 sh.orig <defunct>\n   4435       1  1-02:31:17  0.0     0 sh.orig <defunct>\n   4440       1  1-02:30:38  0.0     0 sh.orig <defunct>\n   4445       1  1-02:28:29  0.0     0 sh.orig <defunct>\n   4470    4447  1-02:01:49  0.0  4144 bash\n   5151       1  1-01:57:48  0.0     0 sh.orig <defunct>\n   5161       1  1-01:51:36  0.0     0 sh.orig <defunct>\n   5186    5163  1-01:51:29  0.0  4260 bash\n   5865       1  1-00:23:58  0.0     0 sh.orig <defunct>\n   5891    5868    08:58:56  0.0  6312 bash\n   6764    6741    08:49:37  0.0  4236 bash\n   7573    5891    08:20:05  0.0  3012 sh.orig\n   8536    7573    06:41:30  0.0  2080 sh.orig\n  13311       1    01:56:44  0.0     0 sh.orig <defunct>\n  13315       1    01:56:44  0.0     0 sh.orig <defunct>\n  14702       1       48:35  0.0     0 python3 <defunct>\n  15017       1       43:02  0.0     0 sh.orig <defunct>\n  15021       1       43:02  0.0     0 sh.orig <defunct>\n  15248       1       28:14  0.0     0 sh.orig <defunct>\n  15252       1       28:14  0.0     0 sh.orig <defunct>\n  15629    6764       00:11  0.0  2340 less\n  15632    8536       00:07  486 342000 featureCounts\n  15649   15643       00:00  0.0 11880 python3\n  15650   15649       00:00  0.0  3404 ps\n"
+}

@@ -1,0 +1,73 @@
+{
+  "checked_utc": "2026-10-27T09:52:10.412491+00:00",
+  "launch": {
+    "status": "launched_not_completed",
+    "stage": "shell",
+    "pid": 2174,
+    "started_utc": "2026-10-27T09:51:51.781025+00:00",
+    "runtime": "/home/zhangke/RNA-seq/20261027_xiehe_zhou/workflow/v1_test6_20261027_retry01/runtime.json",
+    "log": "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_retry01/launcher/shell.launcher.log"
+  },
+  "status": {
+    "status": "running",
+    "started": "2026-10-27T09:51:54.833635+00:00",
+    "pid": 2174
+  },
+  "main_process": {
+    "pid": 2174,
+    "state": "S",
+    "command": "/usr/bin/python3 /home/zhangke/RNA-seq/20261027_xiehe_zhou/workflow/v1_test6_20261027_retry01/code/shell/shell_stage.py /home/zhangke/RNA-seq/20261027_xiehe_zhou/workflow/v1_test6_20261027_retry01/runtime.json --execute ",
+    "uid": 1482
+  },
+  "children": [
+    {
+      "pid": 2299,
+      "command": "/home/zhangke/soft/fastp_dir/fastp -i /home/zhangke/RNA-seq/20261027_xiehe_zhou/raw_data/10GY5FFRT-1_1.fq.gz -I /home/zhangke/RNA-seq/20261027_xiehe_zhou/raw_data/10GY5FFRT-1_2.fq.gz -o /home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_retry01/shell/clean/10GY5FFRT-1_clean_1.fq.gz -O /home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_retry01/shell/clean/10GY5FFRT-1_clean_2.fq.gz --json /home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_retry01/shell/qc/10GY5FFRT-1.fastp.json --html /home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_retry01/shell/qc/10GY5FFRT-1.fastp.html --thread 12 --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT --trim_front1 0 --trim_front2 0 --qualified_quality_phred 20 --unqualified_percent_limit 30 --average_qual 20 --length_required 20 ",
+      "uid": 1482
+    }
+  ],
+  "last_command": {
+    "utc": "2026-10-27T09:51:54.839202+00:00",
+    "argv": [
+      "/home/zhangke/soft/fastp_dir/fastp",
+      "-i",
+      "/home/zhangke/RNA-seq/20261027_xiehe_zhou/raw_data/10GY5FFRT-1_1.fq.gz",
+      "-I",
+      "/home/zhangke/RNA-seq/20261027_xiehe_zhou/raw_data/10GY5FFRT-1_2.fq.gz",
+      "-o",
+      "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_retry01/shell/clean/10GY5FFRT-1_clean_1.fq.gz",
+      "-O",
+      "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_retry01/shell/clean/10GY5FFRT-1_clean_2.fq.gz",
+      "--json",
+      "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_retry01/shell/qc/10GY5FFRT-1.fastp.json",
+      "--html",
+      "/home/zhangke/RNA-seq/20261027_xiehe_zhou/results/runs/v1_test6_20261027_retry01/shell/qc/10GY5FFRT-1.fastp.html",
+      "--thread",
+      "12",
+      "--adapter_sequence",
+      "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA",
+      "--adapter_sequence_r2",
+      "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT",
+      "--trim_front1",
+      "0",
+      "--trim_front2",
+      "0",
+      "--qualified_quality_phred",
+      "20",
+      "--unqualified_percent_limit",
+      "30",
+      "--average_qual",
+      "20",
+      "--length_required",
+      "20"
+    ]
+  },
+  "r_started": false,
+  "versions": {
+    "fastp": "fastp 0.21.0",
+    "STAR": "2.7.11b",
+    "featureCounts": "featureCounts v2.0.6",
+    "samtools": "samtools 1.21\nUsing htslib 1.21\nCopyright (C) 2024 Genome Research Ltd.\n\nSamtools compilation details:\n    Features:       build=configure curses=yes \n    CC:             /opt/conda/conda-bld/samtools_1726175734089/_build_env/bin/x86_64-conda-linux-gnu-cc\n    CPPFLAGS:       -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /miniconda3/include\n    CFLAGS:         -Wall -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /miniconda3/include -fdebug-prefix-map=/opt/conda/conda-bld/samtools_1726175734089/work=/usr/local/src/conda/samtools-1.21 -fdebug-prefix-map=/miniconda3=/usr/local/src/conda-prefix\n    LDFLAGS:        -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/miniconda3/lib -Wl,-rpath-link,/miniconda3/lib -L/miniconda3/lib\n    HTSDIR:         \n    LIBS:           \n    CURSES_LIB:     -ltinfow -lncursesw\n\nHTSlib compilation details:\n    Features:       build=configure libcurl=yes S3=yes GCS=yes libdeflate=yes lzma=yes bzip2=yes plugins=yes plugin-path=/miniconda3/libexec/htslib htscodecs=1.6.1\n    CC:             /opt/conda/conda-bld/htslib_1726172129301/_build_env/bin/x86_64-conda-linux-gnu-cc\n    CPPFLAGS:       -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /miniconda3/include\n    CFLAGS:         -Wall -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /miniconda3/include -fdebug-prefix-map=/opt/conda/conda-bld/htslib_1726172129301/work=/usr/local/src/conda/htslib-1.21 -fdebug-prefix-map=/miniconda3=/usr/local/src/conda-prefix -fvisibility=hidden\n    LDFLAGS:        -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/miniconda3/lib -Wl,-rpath-link,/miniconda3/lib -L/miniconda3/lib -fvisibility=hidden -rdynamic\n\nHTSlib URL scheme handlers present:\n    built-in:\t file, preload, data\n    S3 Multipart Upload:\t s3w+https, s3w+http, s3w\n    Amazon S3:\t s3+https, s3, s3+http\n    libcurl:\t gophers, smtp, wss, smb, rtsp, tftp, pop3, smbs, imaps, pop3s, ws, ftps, https, ftp, gopher, sftp, imap, http, smtps, scp, dict, mqtt, telnet\n    Google Cloud Storage:\t gs+http, gs+https, gs\n    crypt4gh-needed:\t crypt4gh\n    mem:\t mem\nsamtools: /miniconda3/bin/../lib/libtinfow.so.6: no version information available (required by samtools)\nsamtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by samtools)\nsamtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by samtools)\nsamtools: /miniconda3/bin/../lib/libncursesw.so.6: no version information available (required by samtools)",
+    "multiqc": "multiqc, version 1.30"
+  }
+}
