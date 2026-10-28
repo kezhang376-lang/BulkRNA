@@ -22,6 +22,7 @@ Rplots.pdf
 /projects/*/results/
 /projects/*/raw_data/
 /projects/*/prepared/
+/projects/*/config.yaml.bak
 # Local credentials and editor caches are never part of releases.
 .env
 .env.local

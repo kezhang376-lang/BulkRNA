@@ -12,6 +12,7 @@ bundle <- dirname(runtime_file)
 runtime <- read_json(runtime_file)
 if (length(runtime$blockers)) stopf("Prepared bundle is blocked: %s", paste(unlist(runtime$blockers), collapse = "; "))
 cfg <- runtime$config
+validate_runtime_layout(runtime)
 # Linux Pod 入口必检身份；带 account 的真实项目也禁止在 Windows 本地误执行。
 # 不带 Pod 配置的 Windows 合成测试夹具仍可验证统计代码。
 if (identical(Sys.info()[["sysname"]], "Linux") || !is.null(cfg$kubernetes$account)) verify_pod_account(cfg$kubernetes$account)
@@ -29,11 +30,11 @@ if (args[2] == "--environment-only") {
   quit(status = 0)
 }
 if (identical(cfg$input$type, "fastq")) {
-  shell_status <- file.path(runtime$run_root, "shell/status.json")
+  shell_status <- file.path(runtime$run_root, "bam_count_data/status.json")
   if (!file.exists(shell_status) || read_json(shell_status)$status != "succeeded") stopf("Shell stage must complete successfully before R counts checks/analysis")
 }
 counts_file <- if (cfg$input$type == "counts") cfg$paths$counts_file else
-  file.path(runtime$run_root, "shell", "counts", "raw_counts.tsv")
+  file.path(runtime$run_root, "bam_count_data", "counts", "raw_counts.tsv")
 counts <- read_counts(counts_file, samples)
 if (nrow(samples) < 3L) stopf("v1 requires >=3 samples for QC and model checks")
 # 在任何结果写入前验证过滤和模型；完整模型验证也在 DE 模块执行。
@@ -47,7 +48,7 @@ if (args[2] == "--check-only") {
   message("R input/package/model checks passed; no analysis performed.")
   quit(status = 0)
 }
-out <- file.path(runtime$run_root, "analysis")
+out <- file.path(runtime$run_root, "gene_expr_data")
 if (!dir.create(out, recursive = TRUE, showWarnings = FALSE)) stopf("Analysis output exists or is not writable: %s", out)
 write_json(list(status = "running", started = format(Sys.time(), tz = "UTC", usetz = TRUE)), file.path(out, "status.json"))
 log_connection <- file(file.path(out, "analysis.log"), open = "wt")
@@ -59,8 +60,8 @@ tryCatch({
   write.csv(data.frame(gene_id = rownames(counts), kept = filtered$keep), file.path(out, "filtering.csv"), row.names = FALSE)
   write_matrix(filtered$counts, file.path(out, "filtered_counts.tsv"))
   if (cfg$analysis$sample_qc) run_sample_qc(counts, samples, file.path(out, "qc"))
-  if (cfg$analysis$differential_expression) run_deseq2(filtered$counts, samples, contrasts, cfg$deseq2, file.path(out, "de"))
-  if (cfg$analysis$go_enrichment || cfg$analysis$gsea) run_enrichment(contrasts, runtime, file.path(out, "de"), file.path(out, "enrichment"))
+  if (cfg$analysis$differential_expression) run_deseq2(filtered$counts, samples, contrasts, cfg$deseq2, file.path(out, "gene_diff_expr"))
+  if (cfg$analysis$go_enrichment || cfg$analysis$gsea) run_enrichment(contrasts, runtime, file.path(out, "gene_diff_expr"), file.path(out, "enrichment"))
   writeLines(capture.output(sessionInfo()), file.path(out, "sessionInfo_end.txt"))
   write_summary_report(runtime, samples, contrasts, out)
   write_json(list(status = "succeeded", finished = format(Sys.time(), tz = "UTC", usetz = TRUE)), file.path(out, "status.json"))

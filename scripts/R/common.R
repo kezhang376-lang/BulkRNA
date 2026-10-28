@@ -1,5 +1,28 @@
 # 公共函数：不设置工作目录，不加载或清空全局环境。
 stopf <- function(...) stop(sprintf(...), call. = FALSE)
+validate_run_id <- function(run_id, pipeline_version) {
+  if (!is.character(pipeline_version) || length(pipeline_version) != 1L ||
+      !grepl("^[0-9]+[.][0-9]+[.][0-9]+$", pipeline_version)) stopf("Invalid pipeline version")
+  if (!is.character(run_id) || length(run_id) != 1L ||
+      !grepl("^v[0-9]+[.][0-9]+[.][0-9]+_[0-9]{8}_run[0-9]{2,}$", run_id))
+    stopf("run_id must be v<version>_<YYYYMMDD>_run<sequence>, e.g. v2.0.0_20261027_run01")
+  parts <- strsplit(run_id, "_", fixed = TRUE)[[1]]
+  if (!identical(parts[1], paste0("v", pipeline_version))) stopf("run_id version must match pipeline version %s", pipeline_version)
+  date <- suppressWarnings(tryCatch(as.Date(parts[2], format = "%Y%m%d"), error = function(e) as.Date(NA)))
+  if (is.na(date) || !identical(format(date, "%Y%m%d"), parts[2])) stopf("Invalid run_id calendar date")
+  if (!grepl("[1-9]", sub("^run", "", parts[3]))) stopf("Run sequence must be positive")
+  invisible(TRUE)
+}
+validate_runtime_layout <- function(runtime) {
+  if (!identical(runtime$output_layout_version, "2.0")) stopf("Unsupported output layout; use the original frozen code for V1 runs")
+  validate_run_id(runtime$run_id, runtime$pipeline_version)
+  output <- runtime$config$paths$output_dir
+  if (!is.character(output) || length(output) != 1L || !nzchar(output)) stopf("Missing paths.output_dir")
+  expected <- paste0(sub("/+$", "", output), "/", runtime$run_id)
+  if (!identical(runtime$run_root, expected) || any(strsplit(expected, "/", fixed = TRUE)[[1]] == ".."))
+    stopf("run_root must be output_dir/run_id, without an extra runs directory")
+  invisible(TRUE)
+}
 verify_pod_account <- function(account, platform = Sys.info()[["sysname"]], identity = NULL) {
   if (!is.character(account) || length(account) != 1L || !grepl("^[a-z_][a-z0-9_-]*$", account) || account == "root") stopf("kubernetes.account must specify a non-root Linux account")
   if (!identical(platform, "Linux")) stopf("Pod account verification requires Linux")

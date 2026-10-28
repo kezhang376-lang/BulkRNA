@@ -23,9 +23,9 @@ scores[ids %in% genes] <- 5 + runif(sum(ids %in% genes))
 tab <- data.frame(gene_id = ids, log2FoldChange = scores, stat = scores, pvalue = 0.5, padj = 0.5, regulated = "normal")
 tab$padj[ids %in% genes] <- 0.001
 tab$regulated[ids %in% genes] <- "up"
-dir.create(file.path(probe, "de", "synthetic_positive"), recursive = TRUE)
+dir.create(file.path(probe, "gene_diff_expr", "synthetic_positive"), recursive = TRUE)
 write.csv(tab, file.path(probe, "de/synthetic_positive/all_genes.csv"), row.names = FALSE)
-run_enrichment(data.frame(contrast_id = "synthetic_positive"), runtime, file.path(probe, "de"), file.path(probe, "out"))
+run_enrichment(data.frame(contrast_id = "synthetic_positive"), runtime, file.path(probe, "gene_diff_expr"), file.path(probe, "out"))
 folder <- file.path(probe, "out/synthetic_positive")
 if (!file.exists(file.path(folder, "go_ora_up_dotplot.pdf")) || !file.exists(file.path(folder, "go_gsea_dotplot.pdf"))) stopf("Positive GO dotplots missing")
 plot_target_go(file.path(folder, "go_gsea.rds"), target, file.path(probe, "target_go"))

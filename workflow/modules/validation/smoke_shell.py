@@ -61,8 +61,8 @@ try:
         writer.writeheader()
         writer.writerow(sample)
     cfg["paths"]["input_dir"] = str(fixture)
-    runtime["run_id"] = runtime["run_id"] + "_shell_compatibility_only"
-    runtime["run_root"] = str(probe / "synthetic_run")
+    cfg["paths"]["output_dir"] = str(probe / "results")
+    runtime["run_root"] = str(probe / "results" / runtime["run_id"])
     runtime["compatibility_fixture"] = {"source_sample": row["sample_id"], "pairs": pairs, "source_inputs": list(map(str, inputs))}
     atomic_json(probe / "runtime.json", runtime)
     run(probe / "runtime.json", execute=True)

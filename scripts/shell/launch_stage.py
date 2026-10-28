@@ -10,6 +10,7 @@ import sys
 
 sys.dont_write_bytecode = True
 from shell_stage import verify_account
+from layout import validate_runtime_layout
 
 
 def verify_bundle(bundle):
@@ -50,6 +51,9 @@ def main():
     bundle = runtime_file.parent
     verify_bundle(bundle)
     runtime = json.loads(runtime_file.read_text(encoding="utf-8"))
+    validate_runtime_layout(runtime)
+    if bundle.name != runtime["run_id"]:
+        raise ValueError("Bundle directory name must equal run_id")
     if runtime.get("blockers"):
         raise ValueError("Bundle has unresolved blockers")
     verify_account(runtime["config"])

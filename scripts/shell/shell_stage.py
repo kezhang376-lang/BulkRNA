@@ -15,6 +15,7 @@ import shutil
 import subprocess
 import sys
 from datetime import datetime, timezone
+from layout import SHELL_DIR, validate_runtime_layout
 
 
 def stamp():
@@ -229,13 +230,15 @@ def run(runtime_file, execute=False):
     runtime_file = Path(runtime_file).resolve()
     runtime = json.loads(runtime_file.read_text(encoding="utf-8"))
     samples = read_table(runtime_file.parent / "samples.tsv")
+    if not runtime.get("blockers"):
+        validate_runtime_layout(runtime)
     versions, fastp = preflight(runtime, samples)
     if not execute:
         print("Shell input/tool checks passed; no analysis performed.")
         return
     cfg = runtime["config"]
     run_root = Path(runtime["run_root"])
-    out = run_root / "shell"
+    out = run_root / SHELL_DIR
     out.mkdir(parents=True, exist_ok=False)  # Existing/partial runs are not overwritten.
     for name in ("clean", "bam", "counts", "qc", "logs"):
         (out / name).mkdir()

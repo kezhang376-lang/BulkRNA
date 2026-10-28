@@ -1,5 +1,7 @@
-# 仅供审查的 v1 配置示例；不是已经批准的科研方案。
+# 配置接口仍为1.0-review；不是已经批准的科研方案。
 # 合并 config/defaults.yaml；null 是必须补齐/确认的信息，不会被猜填。
+# 新运行名由准备命令指定：v<流程版本>_<YYYYMMDD>_run<至少两位正序号>。
+# 结果为paths.output_dir/<run_id>/bam_count_data及gene_expr_data，无runs层。
 schema_version: "1.0-review"
 project:
   id: "20261018_xiehe_zhou"

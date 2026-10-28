@@ -56,7 +56,9 @@ validate_schema <- function(value, schema, prefix = "config") {
 prepare_project <- function(config_file, run_id, output, repo) {
   source(file.path(repo, "scripts", "R", "common.R"), local = TRUE)
   need(c("yaml", "jsonlite"))
-  if (!grepl("^[A-Za-z0-9][A-Za-z0-9_.-]*$", run_id) || run_id %in% c(".", "..")) stopf("Invalid run_id")
+  pipeline_version <- trimws(readLines(file.path(repo, "VERSION"), warn = FALSE, encoding = "UTF-8")[1])
+  validate_run_id(run_id, pipeline_version)
+  if (!identical(basename(sub("[/\\\\]+$", "", output)), run_id)) stopf("Bundle directory name must equal run_id")
   config_file <- normalizePath(config_file, mustWork = TRUE)
   project_dir <- dirname(config_file)
   load_yaml <- function(path) {
@@ -187,8 +189,8 @@ prepare_project <- function(config_file, run_id, output, repo) {
   file.copy(samples_path, file.path(output, "samples.original.txt"))
   file.copy(contrasts_path, file.path(output, "contrasts.original.txt"))
   for (pair in list(list(samples, "samples.tsv"), list(contrasts, "contrasts.tsv"))) write.table(pair[[1]], file.path(output, pair[[2]]), sep = "\t", row.names = FALSE, quote = FALSE, fileEncoding = "UTF-8")
-  root <- if (is.character(cfg$paths$output_dir)) paste0(sub("/+$", "", cfg$paths$output_dir), "/runs/", run_id) else NULL
-  runtime <- list(bundle_version = "1.0-review", run_id = run_id, run_root = root,
+  root <- if (is.character(cfg$paths$output_dir)) paste0(sub("/+$", "", cfg$paths$output_dir), "/", run_id) else NULL
+  runtime <- list(bundle_version = "2.0", pipeline_version = pipeline_version, output_layout_version = "2.0", run_id = run_id, run_root = root,
     prepared_utc = format(Sys.time(), tz = "UTC", usetz = TRUE), config = cfg,
     blockers = as.list(blockers), notes = as.list(notes))
   write_json(runtime, file.path(output, "runtime.json"))
@@ -213,14 +215,14 @@ prepare_project <- function(config_file, run_id, output, repo) {
     "", "## Notes", paste0("- ", notes))
   writeLines(enc2utf8(plan), file.path(output, "review_plan.md"), useBytes = TRUE)
   if (file.exists(file.path(project_dir, "analysis_plan.md"))) file.copy(file.path(project_dir, "analysis_plan.md"), file.path(output, "analysis_plan.md"))
-  if (file.exists(file.path(project_dir, "README_V1_CN.md"))) file.copy(file.path(project_dir, "README_V1_CN.md"), file.path(output, "README_V1_CN.md"))
+  # 旧项目说明属于V1路径快照，不复制到新布局包中；新说明由当前构建器生成。
   validation_source <- file.path(repo, "workflow", "modules", "validation")
   if (dir.exists(validation_source)) {
     dir.create(file.path(output, "validation"))
     validation_files <- list.files(validation_source, full.names = TRUE)
     if (!all(file.copy(validation_files, file.path(output, "validation")))) stopf("Validation code copy failed")
   }
-  readme <- c("# BulkRNA V1 portable project bundle", "", paste("Project:", cfg$project$id), paste("Run:", run_id), paste("Results root:", root),
+  readme <- c("# BulkRNA portable project bundle", "", paste("Pipeline:", pipeline_version), paste("Output layout: 2.0"), paste("Project:", cfg$project$id), paste("Run:", run_id), paste("Results root:", root),
     "", "This folder is self-contained. Copy/extract it as a whole; do not edit its frozen files. No Windows R/Python or repository checkout is required on the Pods.",
     paste("Required Linux account:", cfg$kubernetes$account),
     "Python3 is required on both Pods. Root/wrong-account execution is rejected. Switch account before calling the entrypoints.",
@@ -230,11 +232,20 @@ prepare_project <- function(config_file, run_id, output, repo) {
     "", "Run stages sequentially on their designated Pods. The package does not create or modify Pods, switch identities, transfer large files, or restart partial runs.",
     "Existing stage output directories are rejected. If a stage fails, inspect logs/status; do not delete outputs and retry blindly. No fingerprint resume is implemented.",
     "For long, authorized runs, use bash start_shell.sh --execute on the Shell Pod, then bash start_R.sh --execute on the R Pod AFTER Shell succeeds. These launch detached processes and write per-stage locks/PID/logs under results_root/launcher; launch success does not mean completion. Do not call them before authorization.",
-    "", "## Outputs", "shell/clean, shell/bam, shell/counts/raw_counts.tsv, shell/qc, shell/logs, shell/status.json", "analysis/qc, analysis/de, analysis/enrichment, analysis/report.html, analysis/analysis.log, analysis/status.json", "", "All outputs are under the results root above, not the bundle folder.",
+    "", "## Outputs", "bam_count_data/clean, bam_count_data/bam, bam_count_data/counts/raw_counts.tsv, bam_count_data/qc, bam_count_data/logs, bam_count_data/status.json", "gene_expr_data/qc, gene_expr_data/gene_diff_expr, gene_expr_data/enrichment, gene_expr_data/report.html, gene_expr_data/analysis.log, gene_expr_data/status.json", "", "All outputs are under output_dir/run_id, without an extra runs directory. Bundle directory name must equal run_id.",
     "", "## Validation", "validation/ contains separate small-data compatibility checks. They require a NEW validation directory and do not run the full six-sample analysis.",
     "", "## Scope", "PE fastp/STAR/featureCounts, sample QC, pairwise DESeq2 Wald, GO ORA/GSEA, optional MultiQC. KEGG, LRT, WGCNA, mode B/C orchestration and resume are not included.",
     "", "MANIFEST.sha256.json verifies package contents before launch; changing any frozen file requires generating a new package.")
   write_utf8_lf(readme, file.path(output, "README_RUN.md"))
+  write_utf8_lf(c("# BulkRNA\u65b0\u76ee\u5f55\u89c4\u5219\u8fd0\u884c\u8bf4\u660e", "", paste("\u6d41\u7a0b\u7248\u672c\uff1a", pipeline_version), paste("\u8fd0\u884c\u7f16\u53f7\uff1a", run_id), paste("\u7ed3\u679c\u6839\u76ee\u5f55\uff1a", root), "",
+    "\u672c\u5305\u76ee\u5f55\u540d\u4e0erun_id\u76f8\u540c\uff1b\u7ed3\u679c\u76f4\u63a5\u8fdb\u5165output_dir/run_id\uff0c\u4e0d\u542bruns\u5c42\u3002",
+    "Shell\u4ea7\u7269\uff1abam_count_data/clean\u3001bam_count_data/bam\u3001bam_count_data/counts\u3001bam_count_data/qc\u3001bam_count_data/logs\u3002",
+    "R\u4ea7\u7269\uff1agene_expr_data/qc\u3001gene_expr_data/gene_diff_expr\u3001gene_expr_data/enrichment\u3001gene_expr_data/report.html\u3002",
+    "\u72b6\u6001\uff1abam_count_data/status.json\u3001gene_expr_data/status.json\uff1b\u65e5\u5fd7\uff1alauncher\u3001bam_count_data/logs\u3001gene_expr_data/analysis.log\u3002",
+    "\u5fc5\u987b\u5148\u6309\u914d\u7f6e\u8d26\u53f7\u5207\u6362\u5230\u975eroot\u8eab\u4efd\u3002Shell Pod\u5148\u6267\u884cbash run_shell.sh --check-only\uff0cR Pod\u5148\u6267\u884cbash run_R.sh --environment-only\u3002",
+    "\u4ec5\u5728\u672c\u6b21\u8fd0\u884c\u660e\u786e\u6388\u6743\u540e\uff0c\u5728Shell Pod\u6267\u884cbash start_shell.sh --execute\u3002Shell\u6210\u529f\u4e14\u8ba1\u6570\u9a8c\u6536\u901a\u8fc7\u540e\uff0c\u624d\u53ef\u6309\u6388\u6743\u5728R Pod\u6267\u884cbash start_R.sh --execute\u3002",
+    "\u540e\u53f0\u542f\u52a8\u8fd4\u56dePID\u4e0d\u4ee3\u8868\u6210\u529f\u3002\u5df2\u6709\u7ed3\u679c\u4e0d\u8986\u76d6\uff0c\u4e0d\u81ea\u52a8\u6062\u590d\uff0c\u4e0d\u81ea\u52a8\u8de8Pod\u6295\u9012\u3002",
+    "\u672c\u5305\u7981\u6b62\u4f7f\u7528\u65e7V1\u8fd0\u884c\u914d\u7f6e\uff1b\u65e7\u51bb\u7ed3\u5305\u53ca\u670d\u52a1\u5668\u7ed3\u679c\u4fdd\u7559\u539f\u6837\u3002"), file.path(output, "README_CN.md"))
   files <- list.files(output, recursive = TRUE, full.names = TRUE)
   fingerprint <- data.frame(file = substring(files, nchar(output) + 2L), md5 = unname(tools::md5sum(files)))
   write.csv(fingerprint, file.path(output, "bundle_checksums_md5.csv"), row.names = FALSE)

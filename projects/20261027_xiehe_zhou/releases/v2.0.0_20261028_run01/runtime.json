@@ -1,0 +1,118 @@
+{
+  "bundle_version": "2.0",
+  "pipeline_version": "2.0.0",
+  "output_layout_version": "2.0",
+  "run_id": "v2.0.0_20261028_run01",
+  "run_root": "/home/zhangke/RNA-seq/20261028_xiehe_zhou/results/v2.0.0_20261028_run01",
+  "prepared_utc": "2026-10-27 16:14:46 UTC",
+  "config": {
+    "project": {
+      "id": "xiehe_zhouyisheng_20261027",
+      "description": "Pilot workflow validation using 6 mouse samples in two groups (10GY5FFRT and Control, three samples per group), comparing 10GY5FFRT versus Control. The full 21-sample, seven-group study remains a subsequent phase documented in analysis_plan.md."
+    },
+    "kubernetes": {
+      "namespace": "renkelab-zhangke",
+      "shell_pod": "zk2-med-6dc5cbcb5d-wd5lj",
+      "r_pod": "zkr1-med-5d8b8c5b48-tggbt",
+      "account": "zhangke",
+      "context": "zhangke@med.thu"
+    },
+    "species": {
+      "name": "mouse",
+      "genome": "GRCm39",
+      "annotation": "Ensembl_109"
+    },
+    "paths": {
+      "input_dir": "/home/zhangke/RNA-seq/20261028_xiehe_zhou/raw_data",
+      "output_dir": "/home/zhangke/RNA-seq/20261028_xiehe_zhou/results",
+      "reference_dir": "/home/zhangke/public_database",
+      "counts_file": "/home/zhangke/RNA-seq/20261028_xiehe_zhou/counts_data"
+    },
+    "input": {
+      "type": "fastq",
+      "paired_end": true,
+      "strandedness": "unstranded"
+    },
+    "analysis": {
+      "fastp": true,
+      "star": true,
+      "featurecounts": true,
+      "sample_qc": true,
+      "differential_expression": true,
+      "go_enrichment": true,
+      "kegg_enrichment": false,
+      "gsea": true,
+      "custom_analysis": false,
+      "multiqc": true
+    },
+    "deseq2": {
+      "design": "~ group",
+      "fdr": 0.05,
+      "log2fc_cutoff": 1,
+      "fit_type": "parametric"
+    },
+    "execution": {
+      "resume": false,
+      "overwrite": false,
+      "mode": "standard"
+    },
+    "schema_version": "1.0-review",
+    "metadata": {
+      "samples": "samples.csv",
+      "contrasts": "contrasts.csv",
+      "delimiter": ","
+    },
+    "references": {
+      "fasta": "/home/zhangke/public_database/STAR_Mus_musculus_GRCm39/fasta_gtf/Mus_musculus.GRCm39.dna.primary_assembly.fa",
+      "gtf": "/home/zhangke/public_database/STAR_Mus_musculus_GRCm39/fasta_gtf/Mus_musculus.GRCm39.109.gtf",
+      "star_index": "/home/zhangke/public_database/STAR_Mus_musculus_GRCm39/index"
+    },
+    "resources": {
+      "fastp_threads": 12,
+      "star_threads": 12,
+      "star_sort_threads": 12,
+      "star_sort_memory_bytes": 4294967296,
+      "featurecounts_threads": 12
+    },
+    "environment": {
+      "shell_path_prepend": [
+        "/miniconda3/bin"
+      ],
+      "rscript": "/usr/bin/Rscript"
+    },
+    "fastp": {
+      "extra_args": "/home/zhangke/soft/fastp_dir/Illumina_fastp.config",
+      "expected_version": "0.21.0"
+    },
+    "featurecounts": {
+      "count_unit": "fragment",
+      "feature_type": "exon",
+      "gene_attribute": "gene_id"
+    },
+    "filtering": {
+      "method": "legacy_nonzero_fraction",
+      "fraction": 0.75
+    },
+    "enrichment": {
+      "orgdb": "org.Mm.eg.db",
+      "key_type": "ENSEMBL",
+      "ontology": "ALL",
+      "fdr": 0.05,
+      "min_gs_size": 3,
+      "max_gs_size": 800,
+      "gsea_rank": "log2FoldChange",
+      "seed": 20261027,
+      "eps": 1e-10,
+      "show_category": 20
+    }
+  },
+  "blockers": [],
+  "notes": [
+    "Prepared locally only. No Kubernetes check, upload, or analysis executed.",
+    "Remote storage, capacity, reference identity and scientific design still require review.",
+    "Formal execution requires separate user authorization; launchers default to check-only.",
+    "Pod Linux account must be zhangke; switch identity before launching. Workers reject root/wrong UID; no automatic account switching is implemented.",
+    "project.id differs from project folder; verify intended project identity",
+    "fastp.extra_args is a legacy parameter file; the worker reads its specified binary and options without shell evaluation. File/version validation occurs on the Pod."
+  ]
+}

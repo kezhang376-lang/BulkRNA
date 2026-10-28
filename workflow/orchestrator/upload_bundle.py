@@ -7,6 +7,10 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts/shell"))
+from layout import validate_runtime_layout
 
 RECEIVER = r'''
 import hashlib,io,json,os,pathlib,pwd,sys,tarfile
@@ -49,12 +53,17 @@ def main():
     parser.add_argument("destination")
     args = parser.parse_args()
     runtime = json.loads((Path(args.bundle) / "runtime.json").read_text(encoding="utf-8"))
+    validate_runtime_layout(runtime)
+    if Path(args.bundle).name != runtime["run_id"] or Path(args.archive).name != runtime["run_id"] + ".tar.gz":
+        raise ValueError("Bundle directory and archive name must match run_id")
     k = runtime["config"]["kubernetes"]
     destination = args.destination
     # 只允许项目根下workflow目录，不能把代码包解压进原始输入/结果目录。
     project_root = Path(runtime["config"]["paths"]["input_dir"]).parent.as_posix()
     if not destination.startswith(project_root + "/workflow/") or "/../" in destination:
         raise ValueError("Destination must be under the project's workflow directory")
+    if destination != project_root + "/workflow/" + runtime["run_id"]:
+        raise ValueError("Server bundle directory must be workflow/run_id")
     data = Path(args.archive).read_bytes()
     digest = hashlib.sha256(data).hexdigest()
     command = ["kubectl", "--context", k["context"], "--namespace", k["namespace"],

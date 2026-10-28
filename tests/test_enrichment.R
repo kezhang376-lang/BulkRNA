@@ -20,12 +20,12 @@ tab <- data.frame(gene_id = ids, log2FoldChange = stat, stat = stat,
 tab$padj[ids %in% genes] <- 0.001
 tab$regulated[ids %in% genes] <- "up"
 tmp <- tempfile("bulkrna_enrichment_")
-dir.create(file.path(tmp, "de", "synthetic"), recursive = TRUE)
+dir.create(file.path(tmp, "gene_diff_expr", "synthetic"), recursive = TRUE)
 write.csv(tab, file.path(tmp, "de/synthetic/all_genes.csv"), row.names = FALSE)
 cfg <- list(analysis = list(gsea = TRUE, go_enrichment = TRUE), enrichment = list(
   orgdb = "org.Mm.eg.db", key_type = "ENSEMBL", ontology = "BP", fdr = 0.05,
   min_gs_size = 10L, max_gs_size = 100L, gsea_rank = "stat", seed = 19L, eps = 0.001, show_category = 5L))
-run_enrichment(data.frame(contrast_id = "synthetic"), list(config = cfg), file.path(tmp, "de"), file.path(tmp, "out"))
+run_enrichment(data.frame(contrast_id = "synthetic"), list(config = cfg), file.path(tmp, "gene_diff_expr"), file.path(tmp, "out"))
 folder <- file.path(tmp, "out/synthetic")
 stopifnot(file.exists(file.path(folder, "go_gsea.rds")), file.exists(file.path(folder, "go_ora_up.rds")))
 stopifnot(file.exists(file.path(folder, "go_ora_up_dotplot.pdf")))

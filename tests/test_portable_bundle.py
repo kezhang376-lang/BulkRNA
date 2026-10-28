@@ -43,8 +43,13 @@ class PortableTests(unittest.TestCase):
     def test_detached_launch_lock_without_starting_a_real_process(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            runtime = root / "runtime.json"
-            runtime.write_text(json.dumps({"run_root": str(root / "outputs"), "config": {"kubernetes": {"account": "fixture"}}}))
+            run_id = "v2.0.0_20261027_run01"
+            bundle = root / run_id
+            bundle.mkdir()
+            runtime = bundle / "runtime.json"
+            runtime.write_text(json.dumps({"pipeline_version": "2.0.0", "output_layout_version": "2.0", "run_id": run_id,
+                "run_root": str(root / "outputs" / run_id),
+                "config": {"paths": {"output_dir": str(root / "outputs")}, "kubernetes": {"account": "fixture"}}}))
             argv = ["start_stage.py", "shell", str(runtime), "--execute"]
             with patch.object(start_stage, "verify_bundle"), patch.object(start_stage, "verify_account"), \
                     patch.object(start_stage.subprocess, "run") as preflight, \
@@ -56,7 +61,7 @@ class PortableTests(unittest.TestCase):
                 with self.assertRaises(FileExistsError):
                     start_stage.main()
                 self.assertEqual(process.call_count, 1)
-                state = json.loads((root / "outputs/launcher/shell.launch.json").read_text())
+                state = json.loads((root / "outputs" / run_id / "launcher/shell.launch.json").read_text())
                 self.assertEqual(state["status"], "launched_not_completed")
 
 

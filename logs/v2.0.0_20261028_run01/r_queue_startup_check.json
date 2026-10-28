@@ -1,0 +1,31 @@
+{
+  "checked_utc": "2026-10-27T16:17:47.219836+00:00",
+  "stage": "r_queue",
+  "launch": {
+    "status": "queue_launched_not_completed",
+    "pid": 958,
+    "started_utc": "2026-10-27T16:17:07.090418+00:00",
+    "bundle": "/home/zhangke/RNA-seq/20261028_xiehe_zhou/workflow/v2.0.0_20261028_run01",
+    "max_wait_seconds": 172800
+  },
+  "status": {
+    "status": "waiting_for_shell",
+    "pid": 958,
+    "started_utc": "2026-10-27T16:17:07.136546+00:00",
+    "max_wait_seconds": 172800
+  },
+  "process": {
+    "pid": 958,
+    "uid": 1482,
+    "state": "S",
+    "cmdline": "/usr/bin/python3 -B /home/zhangke/RNA-seq/20261028_xiehe_zhou/workflow/v2.0.0_20261028_run01/queue_R_after_shell.py /home/zhangke/RNA-seq/20261028_xiehe_zhou/workflow/v2.0.0_20261028_run01 --worker --execute "
+  },
+  "children": [],
+  "shared_shell_status": {
+    "status": "running",
+    "started": "2026-10-27T16:16:57.549045+00:00",
+    "pid": 4053
+  },
+  "r_analysis_started": false,
+  "package_checksums": "passed"
+}

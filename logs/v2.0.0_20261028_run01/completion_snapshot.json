@@ -1,0 +1,270 @@
+{
+  "checked_utc": "2026-10-28T00:45:58.878951+00:00",
+  "uid": 1482,
+  "states": {
+    "bam_count_data/status.json": {
+      "status": "succeeded",
+      "finished": "2026-10-27T18:02:18.824478+00:00"
+    },
+    "launcher/r.queue.status.json": {
+      "status": "r_launched_not_completed",
+      "finished_utc": "2026-10-27T18:02:52.525777+00:00",
+      "r_pid": 1001,
+      "dependency_audit": "/home/zhangke/RNA-seq/20261028_xiehe_zhou/results/v2.0.0_20261028_run01/launcher/r.dependency_audit.json"
+    },
+    "launcher/r.launch.json": {
+      "status": "launched_not_completed",
+      "stage": "r",
+      "pid": 1001,
+      "started_utc": "2026-10-27T18:02:52.517738+00:00",
+      "runtime": "/home/zhangke/RNA-seq/20261028_xiehe_zhou/workflow/v2.0.0_20261028_run01/runtime.json",
+      "log": "/home/zhangke/RNA-seq/20261028_xiehe_zhou/results/v2.0.0_20261028_run01/launcher/r.launcher.log"
+    },
+    "gene_expr_data/status.json": {
+      "status": "succeeded",
+      "finished": "2026-10-27 18:06:30 UTC"
+    }
+  },
+  "logs": {
+    "launcher/shell.launcher.log": [],
+    "launcher/r.queue.log": [
+      "{",
+      "  \"status\": \"launched_not_completed\",",
+      "  \"stage\": \"r\",",
+      "  \"pid\": 1001,",
+      "  \"started_utc\": \"2026-10-27T18:02:52.517738+00:00\",",
+      "  \"runtime\": \"/home/zhangke/RNA-seq/20261028_xiehe_zhou/workflow/v2.0.0_20261028_run01/runtime.json\",",
+      "  \"log\": \"/home/zhangke/RNA-seq/20261028_xiehe_zhou/results/v2.0.0_20261028_run01/launcher/r.launcher.log\"",
+      "}",
+      "",
+      "",
+      "",
+      "R input/package/model checks passed; no analysis performed.",
+      ""
+    ],
+    "launcher/r.launcher.log": [
+      "",
+      "",
+      "Warning messages:",
+      "1: In prepareStats(stats, scoreType, gseaParam) :",
+      "  There are ties in the preranked stats (2.34% of the list).",
+      "The order of those tied genes will be arbitrary, which may produce unexpected results.",
+      "2: In fgsea::fgseaMultilevel(pathways = pathways, stats = ranks, minSize = cfg$min_gs_size,  :",
+      "  There were 8 pathways for which P-values were not calculated properly due to unbalanced (positive and negative) gene-level statistic values. For such pathways pval, padj, NES, log2err are set to NA. You can try to increase the value of the argument nPermSimple (for example set it nPermSimple = 10000)",
+      "3: In fgsea::fgseaMultilevel(pathways = pathways, stats = ranks, minSize = cfg$min_gs_size,  :",
+      "  For some pathways, in reality P-values are less than 1e-10. You can set the `eps` argument to zero for better estimation."
+    ],
+    "gene_expr_data/analysis.log": [
+      "  it appears that the last variable in the design formula, 'group',",
+      "  has a factor level, 'Control', which is not the reference level. we recommend",
+      "  to use factor(...,levels=...) or relevel() to set this as the reference level",
+      "  before proceeding. for more information, please see the 'Note on factor levels'",
+      "  in vignette('DESeq2').",
+      "'select()' returned 1:many mapping between keys and columns",
+      "'select()' returned 1:many mapping between keys and columns",
+      "'select()' returned 1:1 mapping between keys and columns",
+      "'select()' returned 1:many mapping between keys and columns",
+      "'select()' returned 1:many mapping between keys and columns",
+      "'select()' returned 1:many mapping between keys and columns",
+      "'select()' returned 1:many mapping between keys and columns"
+    ]
+  },
+  "r_files": [
+    {
+      "path": "gene_expr_data/status.json",
+      "bytes": 69
+    },
+    {
+      "path": "gene_expr_data/analysis.log",
+      "bytes": 752
+    },
+    {
+      "path": "gene_expr_data/sessionInfo_start.txt",
+      "bytes": 4596
+    },
+    {
+      "path": "gene_expr_data/runtime.json",
+      "bytes": 4154
+    },
+    {
+      "path": "gene_expr_data/filtering.csv",
+      "bytes": 1516018
+    },
+    {
+      "path": "gene_expr_data/filtered_counts.tsv",
+      "bytes": 920797
+    },
+    {
+      "path": "gene_expr_data/sessionInfo_end.txt",
+      "bytes": 4686
+    },
+    {
+      "path": "gene_expr_data/report.html",
+      "bytes": 6316
+    },
+    {
+      "path": "gene_expr_data/qc/log2_cpm_plus1.tsv",
+      "bytes": 4069240
+    },
+    {
+      "path": "gene_expr_data/qc/library_summary.csv",
+      "bytes": 214
+    },
+    {
+      "path": "gene_expr_data/qc/sample_boxplot.pdf",
+      "bytes": 4894
+    },
+    {
+      "path": "gene_expr_data/qc/sample_violin.pdf",
+      "bytes": 28814
+    },
+    {
+      "path": "gene_expr_data/qc/sample_correlation.csv",
+      "bytes": 709
+    },
+    {
+      "path": "gene_expr_data/qc/sample_correlation.pdf",
+      "bytes": 6160
+    },
+    {
+      "path": "gene_expr_data/qc/pca_scores.csv",
+      "bytes": 383
+    },
+    {
+      "path": "gene_expr_data/qc/pca_variance.csv",
+      "bytes": 159
+    },
+    {
+      "path": "gene_expr_data/qc/pca_logcpm.pdf",
+      "bytes": 5421
+    },
+    {
+      "path": "gene_expr_data/qc/sample_clustering.pdf",
+      "bytes": 4646
+    },
+    {
+      "path": "gene_expr_data/gene_diff_expr/aligned_coldata.csv",
+      "bytes": 438
+    },
+    {
+      "path": "gene_expr_data/gene_diff_expr/design_matrix.csv",
+      "bytes": 134
+    },
+    {
+      "path": "gene_expr_data/gene_diff_expr/normalized_counts.tsv",
+      "bytes": 2723601
+    },
+    {
+      "path": "gene_expr_data/gene_diff_expr/dds.rds",
+      "bytes": 14026620
+    },
+    {
+      "path": "gene_expr_data/gene_diff_expr/contrast_summary.csv",
+      "bytes": 137
+    },
+    {
+      "path": "gene_expr_data/gene_diff_expr/10GY5FFRT_vs_Control/all_genes.csv",
+      "bytes": 4217617
+    },
+    {
+      "path": "gene_expr_data/gene_diff_expr/10GY5FFRT_vs_Control/significant_genes.csv",
+      "bytes": 152936
+    },
+    {
+      "path": "gene_expr_data/gene_diff_expr/10GY5FFRT_vs_Control/result.rds",
+      "bytes": 1082179
+    },
+    {
+      "path": "gene_expr_data/gene_diff_expr/10GY5FFRT_vs_Control/ma.pdf",
+      "bytes": 1351871
+    },
+    {
+      "path": "gene_expr_data/gene_diff_expr/10GY5FFRT_vs_Control/volcano.pdf",
+      "bytes": 780203
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/annotation_mapping.csv",
+      "bytes": 609896
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/id_symbol_mapping.csv",
+      "bytes": 552624
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_gsea_ranks.csv",
+      "bytes": 727645
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_gsea_rank_diagnostics.json",
+      "bytes": 93
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_gsea_backend.json",
+      "bytes": 326
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_gsea.rds",
+      "bytes": 6551483
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_gsea_all.csv",
+      "bytes": 5321043
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_gsea_significant.csv",
+      "bytes": 277883
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_gsea_status.json",
+      "bytes": 42
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_gsea_dotplot.pdf",
+      "bytes": 8036
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_ora_up.rds",
+      "bytes": 2120071
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_ora_up_all.csv",
+      "bytes": 2463858
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_ora_up_significant.csv",
+      "bytes": 245864
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_ora_up_status.json",
+      "bytes": 42
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_ora_up_dotplot.pdf",
+      "bytes": 8215
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_ora_down.rds",
+      "bytes": 2051629
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_ora_down_all.csv",
+      "bytes": 1921628
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_ora_down_significant.csv",
+      "bytes": 10183
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_ora_down_status.json",
+      "bytes": 41
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_ora_down_dotplot.pdf",
+      "bytes": 8048
+    },
+    {
+      "path": "gene_expr_data/enrichment/10GY5FFRT_vs_Control/go_ora_universe.txt",
+      "bytes": 302005
+    }
+  ]
+}

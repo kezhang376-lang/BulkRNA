@@ -11,6 +11,7 @@ import sys
 sys.dont_write_bytecode = True
 from launch_stage import verify_bundle
 from shell_stage import verify_account, atomic_json
+from layout import SHELL_DIR, R_DIR, validate_runtime_layout
 
 
 def main():
@@ -22,13 +23,16 @@ def main():
     runtime_file = Path(args.runtime).resolve()
     bundle = runtime_file.parent
     runtime = json.loads(runtime_file.read_text())
+    validate_runtime_layout(runtime)
+    if bundle.name != runtime["run_id"]:
+        raise ValueError("Bundle directory name must equal run_id")
     verify_account(runtime["config"])
     verify_bundle(bundle)
     launcher = bundle / "code/shell/launch_stage.py"
     command = [sys.executable, "-B", str(launcher), args.stage, str(runtime_file)]
     subprocess.run(command + ["--check-only"], check=True)
     run_root = Path(runtime["run_root"])
-    stage_output = run_root / ("shell" if args.stage == "shell" else "analysis")
+    stage_output = run_root / (SHELL_DIR if args.stage == "shell" else R_DIR)
     if stage_output.exists():
         raise ValueError("Stage output already exists; no restart/overwrite")
     folder = run_root / "launcher"

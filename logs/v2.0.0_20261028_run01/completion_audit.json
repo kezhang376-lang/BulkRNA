@@ -1,0 +1,87 @@
+{
+  "audit_utc": "2026-10-28T00:47:10.682449+00:00",
+  "status": "structural_checks_passed",
+  "dependency": {
+    "checked_utc": "2026-10-28T00:47:10.114048+00:00",
+    "status": "shell_dependency_verified",
+    "genes": 57010,
+    "samples": [
+      "10GY5FFRT-1",
+      "10GY5FFRT-2",
+      "10GY5FFRT-3",
+      "control-1",
+      "control-2",
+      "control-3"
+    ],
+    "column_totals": [
+      26643777,
+      19416604,
+      20134932,
+      28442016,
+      25879737,
+      21409545
+    ],
+    "raw_counts_sha256": "0e163c0e49aca82261962eedf8cd461173b3841957fe576d3132416505a28654",
+    "note": "BAM/index presence checked; Shell previously ran quickcheck/index. Not a biological QC verdict."
+  },
+  "bam_checks": [
+    {
+      "sample_id": "10GY5FFRT-1",
+      "unique_mapping": "90.56%",
+      "bam_quickcheck": "passed"
+    },
+    {
+      "sample_id": "10GY5FFRT-2",
+      "unique_mapping": "90.36%",
+      "bam_quickcheck": "passed"
+    },
+    {
+      "sample_id": "10GY5FFRT-3",
+      "unique_mapping": "90.43%",
+      "bam_quickcheck": "passed"
+    },
+    {
+      "sample_id": "control-1",
+      "unique_mapping": "90.52%",
+      "bam_quickcheck": "passed"
+    },
+    {
+      "sample_id": "control-2",
+      "unique_mapping": "90.07%",
+      "bam_quickcheck": "passed"
+    },
+    {
+      "sample_id": "control-3",
+      "unique_mapping": "90.02%",
+      "bam_quickcheck": "passed"
+    }
+  ],
+  "contrast_summary": [
+    {
+      "contrast_id": "10GY5FFRT_vs_Control",
+      "treatment": "10GY5FFRT",
+      "control": "Control",
+      "tested": "18306",
+      "up": "621",
+      "down": "231",
+      "not_evaluated": "4963"
+    }
+  ],
+  "report_links_checked": 41,
+  "new_layout": "passed",
+  "bundle_checksums": "passed",
+  "v1_comparison": {
+    "bam_count_data/counts/raw_counts.tsv": {
+      "v1_available": true,
+      "same_sha256": true
+    },
+    "gene_expr_data/gene_diff_expr/10GY5FFRT_vs_Control/all_genes.csv": {
+      "v1_available": true,
+      "same_sha256": true
+    },
+    "gene_expr_data/gene_diff_expr/10GY5FFRT_vs_Control/significant_genes.csv": {
+      "v1_available": true,
+      "same_sha256": true
+    }
+  }
+}

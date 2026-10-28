@@ -1,0 +1,74 @@
+{
+  "status": "R_objects_and_tables_verified",
+  "actual_fit_type": "parametric",
+  "design": "~group",
+  "filtered_genes": 23269,
+  "sample_ids": [
+    "10GY5FFRT-1",
+    "10GY5FFRT-2",
+    "10GY5FFRT-3",
+    "control-1",
+    "control-2",
+    "control-3"
+  ],
+  "comparison_description": [
+    "mean of normalized counts for all samples",
+    "log2 fold change (MLE): group 10GY5FFRT vs Control",
+    "standard error: group 10GY5FFRT vs Control",
+    "Wald statistic: group 10GY5FFRT vs Control",
+    "Wald test p-value: group 10GY5FFRT vs Control",
+    "BH adjusted p-values"
+  ],
+  "up": 621,
+  "down": 231,
+  "pvalue_NA": 0,
+  "padj_NA": 4963,
+  "go": {
+    "go_gsea": {
+      "total_terms": 14685,
+      "significant_terms": 157,
+      "padj_NA": 8,
+      "missing_statistics_GO_IDs": [
+        "GO:0000785",
+        "GO:0006325",
+        "GO:0006412",
+        "GO:0016071",
+        "GO:0051248",
+        "GO:0140640",
+        "GO:0160307",
+        "GO:1990904"
+      ]
+    },
+    "go_ora_up": {
+      "total_terms": 14299,
+      "significant_terms": 419,
+      "padj_NA": 0,
+      "missing_statistics_GO_IDs": []
+    },
+    "go_ora_down": {
+      "total_terms": 14299,
+      "significant_terms": 27,
+      "padj_NA": 0,
+      "missing_statistics_GO_IDs": []
+    }
+  },
+  "rank_diagnostics": {
+    "total": 23269,
+    "used": 18393,
+    "tied_scores": 430,
+    "statistic": "log2FoldChange"
+  },
+  "gsea_backend": {
+    "backend": "fgsea::fgseaMultilevel",
+    "version": "1.38.0",
+    "seed": 20261027,
+    "eps": 1e-10,
+    "min_gs_size": 3,
+    "max_gs_size": 800,
+    "score_type": "std",
+    "exponent": 1,
+    "nPermSimple": 1000,
+    "sampleSize": 101,
+    "mapping": "OrgDb GOALL; set sizes intersected with ranked genes; same fgsea default semantics"
+  }
+}

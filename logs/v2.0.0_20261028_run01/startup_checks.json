@@ -1,0 +1,70 @@
+{
+  "shell": {
+    "checked_utc": "2026-10-27T16:17:46.677287+00:00",
+    "stage": "shell",
+    "launch": {
+      "status": "launched_not_completed",
+      "stage": "shell",
+      "pid": 4053,
+      "started_utc": "2026-10-27T16:16:55.420781+00:00",
+      "runtime": "/home/zhangke/RNA-seq/20261028_xiehe_zhou/workflow/v2.0.0_20261028_run01/runtime.json",
+      "log": "/home/zhangke/RNA-seq/20261028_xiehe_zhou/results/v2.0.0_20261028_run01/launcher/shell.launcher.log"
+    },
+    "status": {
+      "status": "running",
+      "started": "2026-10-27T16:16:57.549045+00:00",
+      "pid": 4053
+    },
+    "process": {
+      "pid": 4053,
+      "uid": 1482,
+      "state": "S",
+      "cmdline": "/usr/bin/python3 /home/zhangke/RNA-seq/20261028_xiehe_zhou/workflow/v2.0.0_20261028_run01/code/shell/shell_stage.py /home/zhangke/RNA-seq/20261028_xiehe_zhou/workflow/v2.0.0_20261028_run01/runtime.json --execute "
+    },
+    "children": [
+      {
+        "pid": 4178,
+        "uid": 1482,
+        "cmdline": "/home/zhangke/soft/fastp_dir/fastp -i /home/zhangke/RNA-seq/20261028_xiehe_zhou/raw_data/10GY5FFRT-1_1.fq.gz -I /home/zhangke/RNA-seq/20261028_xiehe_zhou/raw_data/10GY5FFRT-1_2.fq.gz -o /home/zhangke/RNA-seq/20261028_xiehe_zhou/results/v2.0.0_20261028_run01/bam_count_data/clean/10GY5FFRT-1_clean_1.fq.gz -O /home/zhangke/RNA-seq/20261028_xiehe_zhou/results/v2.0.0_20261028_run01/bam_count_data/clean/10GY5FFRT-1_clean_2.fq.gz --json /home/zhangke/RNA-seq/20261028_xiehe_zhou/results/v2.0.0_20261028_run01/bam_count_data/qc/10GY5FFRT-1.fastp.json --html /home/zhangke/RNA-seq/20261028_xiehe_zhou/results/v2.0.0_20261028_run01/bam_count_data/qc/10GY5FFRT-1.fastp.html --thread 12 --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT --trim_front1 0 --trim_front2 0 --qualified_quality_phred 20 --unqualified_percent_limit 30 --average_qual 20 --length_required 20 "
+      }
+    ],
+    "shared_shell_status": {
+      "status": "running",
+      "started": "2026-10-27T16:16:57.549045+00:00",
+      "pid": 4053
+    },
+    "r_analysis_started": false,
+    "package_checksums": "passed"
+  },
+  "r_queue": {
+    "checked_utc": "2026-10-27T16:17:47.219836+00:00",
+    "stage": "r_queue",
+    "launch": {
+      "status": "queue_launched_not_completed",
+      "pid": 958,
+      "started_utc": "2026-10-27T16:17:07.090418+00:00",
+      "bundle": "/home/zhangke/RNA-seq/20261028_xiehe_zhou/workflow/v2.0.0_20261028_run01",
+      "max_wait_seconds": 172800
+    },
+    "status": {
+      "status": "waiting_for_shell",
+      "pid": 958,
+      "started_utc": "2026-10-27T16:17:07.136546+00:00",
+      "max_wait_seconds": 172800
+    },
+    "process": {
+      "pid": 958,
+      "uid": 1482,
+      "state": "S",
+      "cmdline": "/usr/bin/python3 -B /home/zhangke/RNA-seq/20261028_xiehe_zhou/workflow/v2.0.0_20261028_run01/queue_R_after_shell.py /home/zhangke/RNA-seq/20261028_xiehe_zhou/workflow/v2.0.0_20261028_run01 --worker --execute "
+    },
+    "children": [],
+    "shared_shell_status": {
+      "status": "running",
+      "started": "2026-10-27T16:16:57.549045+00:00",
+      "pid": 4053
+    },
+    "r_analysis_started": false,
+    "package_checksums": "passed"
+  }
+}

@@ -31,8 +31,8 @@ tryCatch({
   file.copy(file.path(bundle, "samples.tsv"), file.path(probe, "samples.tsv"))
   file.copy(file.path(bundle, "contrasts.tsv"), file.path(probe, "contrasts.tsv"))
   runtime$compatibility_fixture <- list(kind = "simulated_counts", genes = length(ids), note = "No biological findings")
-  runtime$run_id <- paste0(runtime$run_id, "_R_compatibility_only")
-  runtime$run_root <- file.path(normalizePath(probe), "synthetic_run")
+  runtime$config$paths$output_dir <- file.path(normalizePath(probe), "results")
+  runtime$run_root <- file.path(runtime$config$paths$output_dir, runtime$run_id)
   runtime$config$input$type <- "counts"
   runtime$config$paths$counts_file <- file.path(normalizePath(probe), "synthetic_counts.tsv")
   runtime$config$analysis$fastp <- FALSE
@@ -43,8 +43,8 @@ tryCatch({
   status <- system2(file.path(R.home("bin"), "Rscript"), c("--vanilla", shQuote(file.path(bundle, "code/R/run_analysis.R")),
       shQuote(file.path(normalizePath(probe), "runtime.json")), "--execute"), stdout = logfile, stderr = logfile)
   if (status != 0L) stopf("R compatibility entrypoint failed (exit %d); see entrypoint.log", status)
-  actual <- read_json(file.path(runtime$run_root, "analysis/status.json"))
-  if (actual$status != "succeeded" || !file.exists(file.path(runtime$run_root, "analysis/report.html"))) stopf("R compatibility outputs incomplete")
+  actual <- read_json(file.path(runtime$run_root, "gene_expr_data/status.json"))
+  if (actual$status != "succeeded" || !file.exists(file.path(runtime$run_root, "gene_expr_data/report.html"))) stopf("R compatibility outputs incomplete")
   write_json(list(status = "succeeded", kind = "compatibility_only", genes = length(ids),
       note = "Synthetic QC/DE/GO results are not biological findings"), file.path(probe, "status.json"))
   cat("R_COMPATIBILITY_PASS", normalizePath(probe), "\n")

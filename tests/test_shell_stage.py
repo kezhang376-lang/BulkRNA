@@ -9,6 +9,7 @@ import unittest
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts/shell"))
 SPEC = importlib.util.spec_from_file_location("shell_stage", ROOT / "scripts/shell/shell_stage.py")
 STAGE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(STAGE)
@@ -89,10 +90,12 @@ class ShellTests(unittest.TestCase):
             cfg = {"input": {"type": "fastq", "strandedness": "reverse"},
                    "analysis": {"fastp": True, "star": True, "featurecounts": True},
                    "references": {"fasta": str(ref / "ref.fa"), "gtf": str(ref / "ref.gtf"), "star_index": str(ref)},
-                   "paths": {"input_dir": str(p)}, "fastp": {"extra_args": []},
+                   "paths": {"input_dir": str(p), "output_dir": str(p / "results")}, "fastp": {"extra_args": []},
                    "resources": {"fastp_threads": 1, "star_threads": 1, "star_sort_threads": 1, "featurecounts_threads": 1},
                    "featurecounts": {"feature_type": "exon", "gene_attribute": "gene_id"}}
-            runtime = {"config": cfg, "blockers": [], "run_root": str(p / "results")}
+            run_id = "v2.0.0_20261027_run01"
+            runtime = {"pipeline_version": "2.0.0", "output_layout_version": "2.0", "run_id": run_id,
+                       "config": cfg, "blockers": [], "run_root": str(p / "results" / run_id)}
             (p / "runtime.json").write_text(json.dumps(runtime))
             calls = []
 
@@ -122,12 +125,12 @@ class ShellTests(unittest.TestCase):
                 STAGE.run(p / "runtime.json", execute=False)
                 self.assertFalse((p / "results").exists())
                 STAGE.run(p / "runtime.json", execute=True)
-                status = p / "results/shell/status.json"
+                status = p / "results" / run_id / "bam_count_data/status.json"
                 self.assertEqual(json.loads(status.read_text())["status"], "succeeded")
                 fc = next(call for call in calls if call[0] == "featureCounts")
                 self.assertIn("--countReadPairs", fc)
                 self.assertEqual(fc[fc.index("-s") + 1], "2")
-                count_file = p / "results/shell/counts/raw_counts.tsv"
+                count_file = p / "results" / run_id / "bam_count_data/counts/raw_counts.tsv"
                 before = count_file.read_bytes()
                 with self.assertRaises(FileExistsError):
                     STAGE.run(p / "runtime.json", execute=True)

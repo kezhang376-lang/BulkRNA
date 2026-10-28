@@ -5,6 +5,10 @@ import hashlib
 import json
 from pathlib import Path
 import tarfile
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts/shell"))
+from layout import validate_runtime_layout
 
 
 def package(bundle, archive):
@@ -17,6 +21,9 @@ def package(bundle, archive):
     runtime = json.loads((bundle / "runtime.json").read_text(encoding="utf-8"))
     if runtime.get("blockers"):
         raise ValueError("Cannot release a blocked bundle")
+    validate_runtime_layout(runtime)
+    if bundle.name != runtime["run_id"] or archive.name != runtime["run_id"] + ".tar.gz":
+        raise ValueError("Bundle directory and archive name must match run_id")
     files = {}
     for path in sorted(bundle.rglob("*")):
         if path.is_symlink():
